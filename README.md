@@ -7,6 +7,7 @@ predicting fmri activaties from connectome
 3) git commit -a: to save new updates and commit
 4) git push: to upload any local changes to github
 5) git pull: to clone new changes in github to local computers
+6) git log: to check the log information in the repo
 
 
 ##discussion with Pierre on Jan 29th

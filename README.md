@@ -17,3 +17,17 @@ predicting fmri activaties from connectome
       individual atlas
 3) defining network structure: 7-functional networks (non-linear relationship could be learned through convolutional layers; thus no logical conflict)
 4) for limited training samples: use sliding-windows to generate dynamic functional connectivity (duration:5min)
+
+###Data
+1) resting-state: 10 sessions under the folder: /data/cisl/raw_data/midnight/Rawdata/nii_data/preproc_fsl/sub01/rest
+using warped_F_sess*_res_ICA_filt_sm6.nii.gz for after ICA-AROMA, temporal filtering, spatial smoothing and registered
+2) motor tasks: 10 sessions and 2 runs for each,under the folder: /data/cisl/raw_data/midnight/Rawdata/nii_data/preproc_fsl/sub01/motor
+  preprocessed fmri: filtered_func_data_ICA.nii.gz
+  brain activation map from contrasts:
+  zstat1: foot movement 
+  zstat2: hand 
+  zstat3: tongue 
+  zstat4: foot_left 
+  zstat5: foot_right 
+  zstat6: hand_left 
+  zstat7: hand_right

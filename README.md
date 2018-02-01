@@ -38,7 +38,7 @@ models: LinearRegression, RidgeRegression, Lasso, ElasticNetCV, LinearSVR
 data: dynamic functional connectivity (window_size=10min), motor task (2 runs) for 10 sessions
 atlas: we used MIST_ROI atlas (210 regions) to extract mean fMRI signal or activation for model training
 regions: pre-select regions with moderate activity from the activation maps (z-score>1.9); 
-         after that, we trained the linear models for approximately 83 regions, independently
+         after that, we trained the linear models for approximately 50 regions, independently
 
 script: midnight_project_resting.ipynb
 further considerations: 

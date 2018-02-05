@@ -1,0 +1,940 @@
+In total, we predicted fMRI activities for 48 regions, as listed below
+
+
+1. Start analysis for region# 3: right_CAUDATE_ventral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -5207398673545131008.000000
+	-----Score on Test data: MSE: 12438444797053680.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.728653
+	-----Score on Test data: MSE: 0.672944, R2: -14.397661 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.680311
+	-----Score on Test data: MSE: 0.625060, R2: -50710890440238676918826512154624.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.680311
+	-----Score on Test data: MSE: 0.625060, R2: -50710890440238676918826512154624.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.725086
+	-----Score on Test data: MSE: 0.665565, R2: -18.559975 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.680311
+
+
+
+2. Start analysis for region# 6: right_CEREBELLUM_VERMIS
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -5322622377791656960.000000
+	-----Score on Test data: MSE: 91572603213412.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.418316
+	-----Score on Test data: MSE: 0.393480, R2: -11.022541 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.393978
+	-----Score on Test data: MSE: 0.349758, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.393978
+	-----Score on Test data: MSE: 0.349758, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.476787
+	-----Score on Test data: MSE: 0.407980, R2: -8.112070 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.393978
+
+
+3. Start analysis for region# 7: left_INFERIOR_PARIETAL_LOBULE
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -26038867501515546624.000000
+	-----Score on Test data: MSE: 6135183761300451.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -1.113084
+	-----Score on Test data: MSE: 0.976272, R2: -15.771786 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -1.045746
+	-----Score on Test data: MSE: 0.896534, R2: -72735496089336514155009808531456.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -1.045746
+	-----Score on Test data: MSE: 0.896534, R2: -72735496089336514155009808531456.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -1.164022
+	-----Score on Test data: MSE: 0.993364, R2: -17.463197 ----
+
+	The Best Linear Method lasso_cv with MSE score: 1.045746
+
+
+4. Start analysis for region# 10: left_ANTERIOR_CINGULATE_CORTEX_dorsal
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -7077494531082479616.000000
+	-----Score on Test data: MSE: 37344677163188704.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.395621
+	-----Score on Test data: MSE: 0.368870, R2: -12.803110 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.382329
+	-----Score on Test data: MSE: 0.326158, R2: -1653818885125662931475624886272.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.382329
+	-----Score on Test data: MSE: 0.326158, R2: -1653818885125662931475624886272.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.450070
+	-----Score on Test data: MSE: 0.384678, R2: -6.628717 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.382329
+
+
+5. Start analysis for region# 20: left_ANTERIOR_INSULA_ventral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -392260566249356672.000000
+	-----Score on Test data: MSE: 469161105656332.312500, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.251783
+	-----Score on Test data: MSE: 0.234300, R2: -15.707316 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.240638
+	-----Score on Test data: MSE: 0.212952, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.240638
+	-----Score on Test data: MSE: 0.212952, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.280660
+	-----Score on Test data: MSE: 0.260131, R2: -7.770329 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.240638
+
+
+6.Start analysis for region# 32: right_CEREBELLUM_VIIb_medial
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -228397940656068132864.000000
+	-----Score on Test data: MSE: 2982901714264030.500000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.731653
+	-----Score on Test data: MSE: 0.677035, R2: -13.189007 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.697992
+	-----Score on Test data: MSE: 0.610043, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.697992
+	-----Score on Test data: MSE: 0.610043, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.762505
+	-----Score on Test data: MSE: 0.710013, R2: -11.181271 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.697992
+
+
+7. Start analysis for region# 52: right_MEDIAL_VISUAL_NETWORK_anteroventral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -2256769934569210368.000000
+	-----Score on Test data: MSE: 23510588982967472.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.277233
+	-----Score on Test data: MSE: 0.246436, R2: -10.546585 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.261316
+	-----Score on Test data: MSE: 0.228825, R2: -4641122966948517699180596035584.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.261316
+	-----Score on Test data: MSE: 0.228825, R2: -4641122966948517699180596035584.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.324962
+	-----Score on Test data: MSE: 0.255604, R2: -7.157064 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.261316
+
+
+8. Start analysis for region# 59: left_DORSOMEDIAL_PREFRONTAL_CORTEX_posterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -73554708277152825344.000000
+	-----Score on Test data: MSE: 23332418353950884.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -1.142503
+	-----Score on Test data: MSE: 1.021376, R2: -14.586533 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -1.052850
+	-----Score on Test data: MSE: 0.924645, R2: -18754023208495955522493444259840.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -1.052850
+	-----Score on Test data: MSE: 0.924645, R2: -18754023208495955522493444259840.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -1.320483
+	-----Score on Test data: MSE: 1.042570, R2: -10.807113 ----
+
+	The Best Linear Method lasso_cv with MSE score: 1.052850
+
+
+9. Start analysis for region# 61: left_VENTRAL_MEDIAL_PREFRONTAL_CORTEX_posterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -13534221011872147456.000000
+	-----Score on Test data: MSE: 62878414916979776.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.843344
+	-----Score on Test data: MSE: 0.824647, R2: -14.657180 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.793903
+	-----Score on Test data: MSE: 0.745234, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.793903
+	-----Score on Test data: MSE: 0.745234, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.821079
+	-----Score on Test data: MSE: 0.819458, R2: -18.114432 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.793903
+
+
+10. Start analysis for region# 67: right_LATERAL_VISUAL_NETWORK_posterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -164365720761118592.000000
+	-----Score on Test data: MSE: 23850569818157744.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.166112
+	-----Score on Test data: MSE: 0.145971, R2: -10.826361 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.158571
+	-----Score on Test data: MSE: 0.138088, R2: -2800757798598483843065810255872.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.158571
+	-----Score on Test data: MSE: 0.138088, R2: -2800757798598483843065810255872.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.179543
+	-----Score on Test data: MSE: 0.155382, R2: -6.170024 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.158571
+
+
+11. Start analysis for region# 68: left_LATERAL_VISUAL_NETWORK_posterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -34274757344365731840.000000
+	-----Score on Test data: MSE: 4743399328100982.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.858351
+	-----Score on Test data: MSE: 0.786130, R2: -15.234493 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.805491
+	-----Score on Test data: MSE: 0.737096, R2: -239201365160133106816096229392384.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.805491
+	-----Score on Test data: MSE: 0.737096, R2: -239201365160133106816096229392384.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.923782
+	-----Score on Test data: MSE: 0.838112, R2: -11.916057 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.805491
+
+
+12. Start analysis for region# 75: right_LATERAL_VISUAL_NETWORK_dorsoposterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -465116070030766784.000000
+	-----Score on Test data: MSE: 20966764116481972.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.359124
+	-----Score on Test data: MSE: 0.325261, R2: -13.429662 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.341502
+	-----Score on Test data: MSE: 0.297000, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.341502
+	-----Score on Test data: MSE: 0.297000, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.408192
+	-----Score on Test data: MSE: 0.365028, R2: -6.627322 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.341502
+
+
+13. Start analysis for region# 81: left_CEREBELLUM_VIIb_lateral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -1464999702210312192.000000
+	-----Score on Test data: MSE: 21825067335511884.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.688944
+	-----Score on Test data: MSE: 0.576128, R2: -13.485061 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.642106
+	-----Score on Test data: MSE: 0.531142, R2: -10772829744445639443331854368768.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.642106
+	-----Score on Test data: MSE: 0.531142, R2: -10772829744445639443331854368768.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.817473
+	-----Score on Test data: MSE: 0.647864, R2: -5.803753 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.642106
+
+
+14. Start analysis for region# 82: right_CEREBELLUM_VIIb_lateral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -245491614513912672.000000
+	-----Score on Test data: MSE: 9256344844164706.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.297118
+	-----Score on Test data: MSE: 0.299372, R2: -16.251421 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.287944
+	-----Score on Test data: MSE: 0.270884, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.287944
+	-----Score on Test data: MSE: 0.270884, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.324807
+	-----Score on Test data: MSE: 0.330059, R2: -42.249039 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.287944
+
+
+15. Start analysis for region# 86: right_CEREBELLUM_I-V
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -3672600102057838592.000000
+	-----Score on Test data: MSE: 919975003478333.875000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.375851
+	-----Score on Test data: MSE: 0.384420, R2: -16.767461 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.357381
+	-----Score on Test data: MSE: 0.333728, R2: -6768799179438298085736723775488.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.357381
+	-----Score on Test data: MSE: 0.333728, R2: -6768799179438298085736723775488.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.432068
+	-----Score on Test data: MSE: 0.425403, R2: -9.289197 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.357381
+
+
+16. Start analysis for region# 101: right_MEDIODORSAL_VISUAL_NETWORK_posterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -583268951505846528.000000
+	-----Score on Test data: MSE: 1639835805219368.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -1.063084
+	-----Score on Test data: MSE: 0.958507, R2: -14.377128 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.990213
+	-----Score on Test data: MSE: 0.881137, R2: -1143781622647519655281035548033024.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.990213
+	-----Score on Test data: MSE: 0.881137, R2: -1143781622647519655281035548033024.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.953868
+	-----Score on Test data: MSE: 0.899648, R2: -29.739560 ----
+
+	The Best Linear Method svr with MSE score: 0.953868
+	Maximum coefficient is: 0.017325
+	Top 10 Functional Connectivity are: 
+	 ---------left_PRECUNEUS_dorsal	:	left_PARIETO_OCCIPITAL_SULCUS 	0.014981
+	 ---------left_PERI_INSULAR_SULCUS	:	left_LATERAL_VISUAL_NETWORK_dorsoposterior 	0.015417
+	 ---------left_SOMATOMOTOR_NETWORK_dorsolateral	:	right_POSTERIOR_VISUAL_NETWORK_dorsomedial 	0.015557
+	 ---------left_CAUDATE	:	right_DORSOMEDIAL_PREFRONTAL_CORTEX_anterororstral 	-0.016029
+	 ---------left_CEREBELLUM_I-V	:	left_ANGULAR_GYRUS 	0.016179
+	 ---------left_ANGULAR_GYRUS	:	left_CEREBELLUM_IX_ventral 	0.016245
+	 ---------right_PRECUNEUS_ventral	:	left_MEDIODORSAL_VISUAL_NETWORK_posterior 	0.016422
+	 ---------right_CEREBELLUM_IX_dorsal	:	right_INTRAPARIETAL_SULCUS 	-0.016570
+	 ---------right_LATERAL_VISUAL_NETWORK_posterior	:	left_ANTERIOR_CINGULATE_CORTEX_dorsal 	0.016946
+	 ---------left_CAUDATE_ventral	:	left_SUPERIOR_TEMPORAL_GYRUS_posterior 	0.017325
+
+
+17. Start analysis for region# 105: right_POSTERIOR_VISUAL_NETWORK_lateral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -5248406283397654528.000000
+	-----Score on Test data: MSE: 5130293092245910.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.252332
+	-----Score on Test data: MSE: 0.206756, R2: -13.230263 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.227854
+	-----Score on Test data: MSE: 0.192877, R2: -434667193246768451754068541440.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.227854
+	-----Score on Test data: MSE: 0.192877, R2: -434667193246768451754068541440.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.258267
+	-----Score on Test data: MSE: 0.222331, R2: -10.977506 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.227854
+
+
+18. Start analysis for region# 113: right_CEREBELLUM_IX_middle
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -43704497230949900288.000000
+	-----Score on Test data: MSE: 459140539301256.125000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.595032
+	-----Score on Test data: MSE: 0.526614, R2: -13.138056 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.552729
+	-----Score on Test data: MSE: 0.491904, R2: -39908016086121271727859414597632.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.552729
+	-----Score on Test data: MSE: 0.494346, R2: -1251.017413 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.603050
+	-----Score on Test data: MSE: 0.552181, R2: -11.953768 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.552729
+
+
+19. Start analysis for region# 115: left_VENTRAL_MEDIAL_PREFRONTAL_CORTEX_anterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -16949580951046383616.000000
+	-----Score on Test data: MSE: 14698458266880016.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.746714
+	-----Score on Test data: MSE: 0.739972, R2: -14.887152 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.706484
+	-----Score on Test data: MSE: 0.660957, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.706484
+	-----Score on Test data: MSE: 0.660957, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.765805
+	-----Score on Test data: MSE: 0.757933, R2: -14.143516 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.706484
+
+
+20. Start analysis for region# 117: right_SOMATOMOTOR_NETWORK_medial
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -17028988398087329792.000000
+	-----Score on Test data: MSE: 2864659978130602.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.529909
+	-----Score on Test data: MSE: 0.549937, R2: -14.142836 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.516370
+	-----Score on Test data: MSE: 0.491411, R2: -4429776086101715998245516214272.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.516370
+	-----Score on Test data: MSE: 0.491411, R2: -4429776086101715998245516214272.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.551931
+	-----Score on Test data: MSE: 0.561514, R2: -22.507135 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.516370
+
+
+21. Start analysis for region# 119: left_SOMATOMOTOR_NETWORK_mediolateral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -282366643727283904.000000
+	-----Score on Test data: MSE: 3005823348546882.500000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.105795
+	-----Score on Test data: MSE: 0.102621, R2: -18.149150 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.101782
+	-----Score on Test data: MSE: 0.093723, R2: -1900927044066419453965239320576.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.101782
+	-----Score on Test data: MSE: 0.093723, R2: -1900927044066419453965239320576.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.111924
+	-----Score on Test data: MSE: 0.109849, R2: -11.398624 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.101782
+
+
+22. Start analysis for region# 121: right_DORSAL_VISUAL_STREAM_ventral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -114118589751018618880.000000
+	-----Score on Test data: MSE: 27089253096540812.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -1.418178
+	-----Score on Test data: MSE: 1.221404, R2: -11.805763 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -1.328209
+	-----Score on Test data: MSE: 1.157533, R2: -667806023794316894378046512955392.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -1.328209
+	-----Score on Test data: MSE: 1.157533, R2: -667806023794316894378046512955392.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -1.426017
+	-----Score on Test data: MSE: 1.261875, R2: -12.929744 ----
+
+	The Best Linear Method lasso_cv with MSE score: 1.328209
+
+
+23. Start analysis for region# 127: right_PARIETO_OCCIPITAL_SULCUS_ventral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -6639408839007602688.000000
+	-----Score on Test data: MSE: 65198231333104.218750, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.541550
+	-----Score on Test data: MSE: 0.513781, R2: -13.131005 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.517349
+	-----Score on Test data: MSE: 0.460135, R2: -149322410277430562981409911209984.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.517349
+	-----Score on Test data: MSE: 0.460135, R2: -149322410277430562981409911209984.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.538265
+	-----Score on Test data: MSE: 0.505193, R2: -14.915547 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.517349
+
+
+24. Start analysis for region# 130: left_FRONTAL_POLE
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -481627180739067904.000000
+	-----Score on Test data: MSE: 8512732272891154.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.465333
+	-----Score on Test data: MSE: 0.391386, R2: -10.693297 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.436919
+	-----Score on Test data: MSE: 0.350452, R2: -7108011644228375127989868822528.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.436919
+	-----Score on Test data: MSE: 0.350452, R2: -7108011644228375127989868822528.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.522474
+	-----Score on Test data: MSE: 0.409584, R2: -7.003381 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.436919
+
+
+25. Start analysis for region# 132: right_SUPERIOR_PARIETAL_LOBULE
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -2336006923010648576.000000
+	-----Score on Test data: MSE: 931557723832623.375000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.743465
+	-----Score on Test data: MSE: 0.605376, R2: -10.160518 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.692419
+	-----Score on Test data: MSE: 0.582603, R2: -47266367352972749470941495427072.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.692419
+	-----Score on Test data: MSE: 0.582603, R2: -47266367352972749470941495427072.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.785984
+	-----Score on Test data: MSE: 0.622019, R2: -7.453385 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.692419
+
+
+26. Start analysis for region# 133: left_SUPERIOR_PARIETAL_LOBULE
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -1001271337455772928.000000
+	-----Score on Test data: MSE: 5632698436642546.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.859521
+	-----Score on Test data: MSE: 0.725447, R2: -11.509276 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.817903
+	-----Score on Test data: MSE: 0.711275, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.817903
+	-----Score on Test data: MSE: 0.711275, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.842066
+	-----Score on Test data: MSE: 0.724699, R2: -17.403334 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.817903
+
+
+27. Start analysis for region# 137: right_COLLATERAL_SULCUS
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -6167365753218053120.000000
+	-----Score on Test data: MSE: 63377204821749168.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.354777
+	-----Score on Test data: MSE: 0.363954, R2: -14.815452 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.336632
+	-----Score on Test data: MSE: 0.312995, R2: -6348295685660622889015259955200.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.336632
+	-----Score on Test data: MSE: 0.312995, R2: -6348295685660622889015259955200.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.370517
+	-----Score on Test data: MSE: 0.369242, R2: -22.891154 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.336632
+
+
+28. Start analysis for region# 142: left_MIDDLE_TEMPORAL_GYRUS_posterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -8389368494857521152.000000
+	-----Score on Test data: MSE: 34838399579313132.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.880638
+	-----Score on Test data: MSE: 0.752941, R2: -11.215953 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.815131
+	-----Score on Test data: MSE: 0.708221, R2: -919323010470953741671043247898624.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.815131
+	-----Score on Test data: MSE: 0.708221, R2: -919323010470953741671043247898624.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.821682
+	-----Score on Test data: MSE: 0.724049, R2: -20.483853 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.815131
+
+
+29. Start analysis for region# 146: right_CEREBELLUM_CRUSI
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -3723642197523759104.000000
+	-----Score on Test data: MSE: 9008600498322526.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.293912
+	-----Score on Test data: MSE: 0.256006, R2: -12.418917 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.272445
+	-----Score on Test data: MSE: 0.237247, R2: -4811945236651825496772233396224.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.272445
+	-----Score on Test data: MSE: 0.237247, R2: -4811945236651825496772233396224.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.299932
+	-----Score on Test data: MSE: 0.271945, R2: -11.022606 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.272445
+
+
+30. Start analysis for region# 147: right_ANTERIOR_INSULA_anteroodorsal
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -14849834307303985152.000000
+	-----Score on Test data: MSE: 15746559915043296.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.377716
+	-----Score on Test data: MSE: 0.363313, R2: -14.899809 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.360729
+	-----Score on Test data: MSE: 0.330109, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.360729
+	-----Score on Test data: MSE: 0.330109, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.435918
+	-----Score on Test data: MSE: 0.407383, R2: -8.084252 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.360729
+
+
+31. Start analysis for region# 148: left_ANTERIOR_INSULA_anteroodorsal
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -50082532478569496576.000000
+	-----Score on Test data: MSE: 12106799514621926.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.519458
+	-----Score on Test data: MSE: 0.463950, R2: -14.090740 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.490084
+	-----Score on Test data: MSE: 0.438140, R2: -3949571731372827551142544146432.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.490084
+	-----Score on Test data: MSE: 0.438140, R2: -3949571731372827551142544146432.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.566763
+	-----Score on Test data: MSE: 0.491806, R2: -8.360570 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.490084
+
+
+32. Start analysis for region# 151: right_DORSOMEDIAL_PREFRONTAL_CORTEX_anterororstral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -26094684109814960128.000000
+	-----Score on Test data: MSE: 38780727332233816.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -1.291635
+	-----Score on Test data: MSE: 1.119527, R2: -12.480119 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -1.178030
+	-----Score on Test data: MSE: 1.067740, R2: -38500176912431121222835298631680.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -1.178030
+	-----Score on Test data: MSE: 1.067740, R2: -38500176912431121222835298631680.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -1.268520
+	-----Score on Test data: MSE: 1.113653, R2: -15.295171 ----
+
+	The Best Linear Method lasso_cv with MSE score: 1.178030
+
+
+33. Start analysis for region# 153: left_SUPERIOR_TEMPORAL_GYRUS_middle
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -146206290685214162944.000000
+	-----Score on Test data: MSE: 80478251750588.062500, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -1.099313
+	-----Score on Test data: MSE: 0.993724, R2: -14.491787 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -1.038372
+	-----Score on Test data: MSE: 0.934873, R2: -18961477118500375797715804618752.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -1.038372
+	-----Score on Test data: MSE: 0.934873, R2: -18961477118500375797715804618752.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -1.037631
+	-----Score on Test data: MSE: 0.977680, R2: -22.215325 ----
+
+	The Best Linear Method svr with MSE score: 1.037631
+	Maximum coefficient is: 0.021002
+	Top 10 Functional Connectivity are: 
+	 ---------left_CEREBELLUM_VERMIS	:	left_INFERIOR_TEMPORAL_GYRUS 	-0.017344
+	 ---------left_POSTERIOR_VISUAL_NETWORK_dorsomedial	:	left_HIPPOCAMPUS 	0.017404
+	 ---------left_right_POSTCENTRAL_SULCUS	:	left_ANTERIOR_INSULA_anteroodorsal 	0.017647
+	 ---------right_CAUDATE_dorsal	:	left_PUTAMEN_posterior 	0.017786
+	 ---------right_CEREBELLUM_VERMIS	:	right_ANTERIOR_CINGULATE_CORTEX_dorsal 	-0.017850
+	 ---------left_CEREBELLUM_VI_posterior	:	left_POSTERIOR_CINGULATE_CORTEX 	0.018336
+	 ---------right_DORSOMEDIAL_PREFRONTAL_CORTEX_anterocaudal	:	right_CEREBELLUM_IX_dorsal 	-0.019506
+	 ---------right_POSTERIOR_INSULA_ventral	:	left_MIDDLE_FRONTAL_GYRUS_posterocaudal 	0.019625
+	 ---------left_DORSOMEDIAL_PREFRONTAL_CORTEX_posterior	:	left_SUPERIOR_FRONTAL_GYRUS_anterodorsal 	-0.019766
+	 ---------right_CEREBELLUM_VERMIS	:	left_LATERAL_ORBITAL_GYRUS 	-0.021002
+
+
+34. Start analysis for region# 154: right_SUPERIOR_TEMPORAL_GYRUS_middle
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -12528838886584217600.000000
+	-----Score on Test data: MSE: 241431116075143.937500, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -1.065393
+	-----Score on Test data: MSE: 1.042219, R2: -16.949160 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -1.012977
+	-----Score on Test data: MSE: 0.929511, R2: -301643541059654233427258548158464.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -1.012977
+	-----Score on Test data: MSE: 0.929511, R2: -301643541059654233427258548158464.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -1.102080
+	-----Score on Test data: MSE: 1.058986, R2: -14.545563 ----
+
+	The Best Linear Method lasso_cv with MSE score: 1.012977
+
+
+35. Start analysis for region# 158: right_SUPERIOR_FRONTAL_SULCUS
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -2948247908937308672.000000
+	-----Score on Test data: MSE: 22150881964414200.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -1.165753
+	-----Score on Test data: MSE: 1.229938, R2: -14.483483 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -1.147501
+	-----Score on Test data: MSE: 1.072435, R2: -87006272810692583416026091225088.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -1.147501
+	-----Score on Test data: MSE: 1.072435, R2: -87006272810692583416026091225088.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -1.268681
+	-----Score on Test data: MSE: 1.228381, R2: -14.922799 ----
+
+	The Best Linear Method lasso_cv with MSE score: 1.147501
+
+
+36. Start analysis for region# 168: right_CEREBELLUM_VI_anterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -2588914489619987456.000000
+	-----Score on Test data: MSE: 10597486183773364.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.451772
+	-----Score on Test data: MSE: 0.467072, R2: -19.997076 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.429344
+	-----Score on Test data: MSE: 0.408500, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.429344
+	-----Score on Test data: MSE: 0.408500, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.487163
+	-----Score on Test data: MSE: 0.486083, R2: -16.151678 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.429344
+
+
+37. Start analysis for region# 175: right_VENTRAL_VISUAL_NETWORK_lateral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -95637855970624144.000000
+	-----Score on Test data: MSE: 30951348119617308.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.205221
+	-----Score on Test data: MSE: 0.194265, R2: -12.642369 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.194210
+	-----Score on Test data: MSE: 0.174840, R2: -3546169467050562594189864861696.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.194210
+	-----Score on Test data: MSE: 0.174840, R2: -3546169467050562594189864861696.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.237322
+	-----Score on Test data: MSE: 0.206558, R2: -6.476064 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.194210
+
+
+38. Start analysis for region# 176: right_left_POSTCENTRAL_SULCUS
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -1335259742433284096.000000
+	-----Score on Test data: MSE: 6057491026272372.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.919490
+	-----Score on Test data: MSE: 0.838264, R2: -15.626886 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.884495
+	-----Score on Test data: MSE: 0.786216, R2: -63785439561070105563403233787904.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.884495
+	-----Score on Test data: MSE: 0.786216, R2: -63785439561070105563403233787904.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.975354
+	-----Score on Test data: MSE: 0.949221, R2: -18.837209 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.884495
+
+
+39. Start analysis for region# 179: right_FUSIFORM_GYRUS_dorsolateral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -17220146787436432.000000
+	-----Score on Test data: MSE: 7012469373152177.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.210615
+	-----Score on Test data: MSE: 0.184000, R2: -9.930055 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.201821
+	-----Score on Test data: MSE: 0.176367, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.201821
+	-----Score on Test data: MSE: 0.176367, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.233435
+	-----Score on Test data: MSE: 0.199003, R2: -9.397918 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.201821
+
+
+40. Start analysis for region# 186: right_CEREBELLUM_VIIIab
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -117770268142745760.000000
+	-----Score on Test data: MSE: 8297834041123193.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.223189
+	-----Score on Test data: MSE: 0.218775, R2: -18.310082 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.210697
+	-----Score on Test data: MSE: 0.196191, R2: -3979228245935620284177146970112.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.210697
+	-----Score on Test data: MSE: 0.196191, R2: -3979228245935620284177146970112.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.237121
+	-----Score on Test data: MSE: 0.232293, R2: -29.274093 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.210697
+
+
+41. Start analysis for region# 188: right_LATERAL_ORBITAL_GYRUS
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -37849900865291370496.000000
+	-----Score on Test data: MSE: 76004193567052640.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.951931
+	-----Score on Test data: MSE: 0.792138, R2: -11.320622 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.868220
+	-----Score on Test data: MSE: 0.737255, R2: -59813271837190121096645519081472.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.868220
+	-----Score on Test data: MSE: 0.737255, R2: -59813271837190121096645519081472.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.887633
+	-----Score on Test data: MSE: 0.791303, R2: -16.389211 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.868220
+
+
+42. Start analysis for region# 197: right_PERIGENUAL_ANTERIOR_CINGULATE_CORTEX
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -26149350446451273728.000000
+	-----Score on Test data: MSE: 25259543047501172.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.888981
+	-----Score on Test data: MSE: 0.744731, R2: -9.962382 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.824096
+	-----Score on Test data: MSE: 0.717340, R2: -232790089460499418563640293326848.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.824096
+	-----Score on Test data: MSE: 0.717340, R2: -232790089460499418563640293326848.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.873412
+	-----Score on Test data: MSE: 0.739643, R2: -13.406313 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.824096
+
+
+43. Start analysis for region# 198: left_PERIGENUAL_ANTERIOR_CINGULATE_CORTEX
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -39588576095493169152.000000
+	-----Score on Test data: MSE: 57841871796139152.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -1.648524
+	-----Score on Test data: MSE: 1.410124, R2: -10.924928 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -1.521276
+	-----Score on Test data: MSE: 1.333489, R2: -108185490015924055757656105680896.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -1.521276
+	-----Score on Test data: MSE: 1.333489, R2: -108185490015924055757656105680896.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -1.718576
+	-----Score on Test data: MSE: 1.419879, R2: -10.545095 ----
+
+	The Best Linear Method lasso_cv with MSE score: 1.521276
+
+
+44. Start analysis for region# 199: left_POSTCENTRAL_SULCUS_dorsal
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -100374554369022752.000000
+	-----Score on Test data: MSE: 388893161727206.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.143825
+	-----Score on Test data: MSE: 0.127081, R2: -12.942718 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.138559
+	-----Score on Test data: MSE: 0.122926, R2: -2493228226034330450190546239488.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.138559
+	-----Score on Test data: MSE: 0.122926, R2: -2493228226034330450190546239488.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.150590
+	-----Score on Test data: MSE: 0.133925, R2: -9.042984 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.138559
+
+
+45. Start analysis for region# 202: right_OCCIPITOTEMPORAL_GYRUS_lateral
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -1049124262673225472.000000
+	-----Score on Test data: MSE: 836874841615811.250000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.257352
+	-----Score on Test data: MSE: 0.243509, R2: -14.261841 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.244783
+	-----Score on Test data: MSE: 0.222331, R2: -4509398926005538904252031696896.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.244783
+	-----Score on Test data: MSE: 0.223005, R2: -2644.172971 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.262832
+	-----Score on Test data: MSE: 0.257592, R2: -18.096201 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.244783
+
+
+46. Start analysis for region# 205: left_SUPERIOR_TEMPORAL_GYRUS_posterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -74117378258172510208.000000
+	-----Score on Test data: MSE: 37167493056955368.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.983229
+	-----Score on Test data: MSE: 0.985627, R2: -18.434910 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.947749
+	-----Score on Test data: MSE: 0.873226, R2: -31486465865586241822799142322176.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.947749
+	-----Score on Test data: MSE: 0.873226, R2: -31486465865586241822799142322176.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -1.088704
+	-----Score on Test data: MSE: 1.041104, R2: -18.649812 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.947749
+
+
+47. Start analysis for region# 207: left_VENTROLATERAL_PREFRONTAL_CORTEX
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -968789557031289216.000000
+	-----Score on Test data: MSE: 539991041914501.687500, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.931483
+	-----Score on Test data: MSE: 0.894952, R2: -13.603789 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.905169
+	-----Score on Test data: MSE: 0.813286, R2: 0.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.905169
+	-----Score on Test data: MSE: 0.813286, R2: 0.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.978906
+	-----Score on Test data: MSE: 0.936424, R2: -14.839015 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.905169
+
+
+48. Start analysis for region# 208: right_CEREBELLUM_CRUSII_posterior
+	Linear Mode: OLS, with mean neg_mean_squared_error score in cv: -4964491775187594240.000000
+	-----Score on Test data: MSE: 3798932461532939.000000, R2: -0.003653 ----
+
+	Linear Mode: ridge_cv, with mean neg_mean_squared_error score in cv: -0.616702
+	-----Score on Test data: MSE: 0.527537, R2: -14.709432 ----
+
+	Linear Mode: lasso_cv, with mean neg_mean_squared_error score in cv: -0.566100
+	-----Score on Test data: MSE: 0.494187, R2: -10023298549932200924065128513536.000000 ----
+
+	Linear Mode: enet_cv, with mean neg_mean_squared_error score in cv: -0.566100
+	-----Score on Test data: MSE: 0.494187, R2: -10023298549932200924065128513536.000000 ----
+
+	Linear Mode: svr, with mean neg_mean_squared_error score in cv: -0.657772
+	-----Score on Test data: MSE: 0.582698, R2: -17.144276 ----
+
+	The Best Linear Method lasso_cv with MSE score: 0.566100
+
+

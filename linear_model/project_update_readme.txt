@@ -1,4 +1,5 @@
-Project Updates:
+Project Updates: 
+  website: https://github.com/SIMEXP/fmri_predict/blob/master/linear_model/
   using linear models to predict fMRI activation patterns (motor task-hand movement) using resting-state functional connectivity
   
   The MIST_ROI atlas with 210 regions were used to extract fMRI signals

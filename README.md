@@ -35,13 +35,13 @@ using warped_F_sess*_res_ICA_filt_sm6.nii.gz for after ICA-AROMA, temporal filte
 ###first practice: predicting task activation from RSFC using linear model
 ## codes in linear_model folder
 ## script: midnight_project_resting.ipynb
-models: LinearRegression, RidgeRegression, Lasso, ElasticNetCV, LinearSVR 
+1) models: LinearRegression, RidgeRegression, Lasso, ElasticNetCV, LinearSVR 
         for each region, the linear models are trained and the best model are chosen based on cross-validation
-data: dynamic functional connectivity (window_size=10min), motor task (2 runs) for 10 sessions
-atlas: we used MIST_ROI atlas (210 regions) to extract mean fMRI signal or activation for model training
-regions: pre-select regions with moderate activity from the activation maps (z-score>1.9); 
+2) data: dynamic functional connectivity (window_size=10min), motor task (2 runs) for 10 sessions
+3) atlas: we used MIST_ROI atlas (210 regions) to extract mean fMRI signal or activation for model training
+4) regions: pre-select regions with moderate activity from the activation maps (z-score>1.9); 
          after that, we trained the linear models for approximately 50 regions, independently
 
-further considerations: 
-      1). combining multi-subject data and using multitask models during training
-      2). statistical test on z-maps first and convert the activation map into binary maps. Thus, we could use classification models instead of regression, which might improve prediction accuracy
+5) further considerations: 
+      a). combining multi-subject data and using multitask models during training
+      b). statistical test on z-maps first and convert the activation map into binary maps. Thus, we could use classification models instead of regression, which might improve prediction accuracy

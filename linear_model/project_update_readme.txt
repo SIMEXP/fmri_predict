@@ -11,7 +11,5 @@ Project Updates:
     5) training: using both cross-validation (10-fold) and train-test-split from sklearn
     
     6) estimation: either for each region (using MSE) or whole-brain (using correlation)
-    
         for individual region: different models are trained, sometimes lasso/Enet performed better than SVR; mean MSE=0.5
-        
         for whole-brain: correlation between estimated and true activation scores: r=0.3069

@@ -9,6 +9,25 @@ predicting fmri activaties from connectome
 5) git pull: to clone new changes in github to local computers
 6) git log: to check the log information in the repo
 
+##to create virual enviorment via conda
+1) install miniconda: https://conda.io/miniconda.html , run "bash Miniconda3-latest-Linux-x86_64.sh" and "conda update conda" after downloading
+2) create env: conda create -n tensorflow-py3.6 anaconda python=3.6
+3) verify env is created: conda list
+4) activate env: source activate tensorflow-py3.6
+5) save packages info from another env2: pip3 freeze > requirements.txt 
+6) loading all requried packages: 
+   while read requirement; do conda install --yes $requirement || pip install $requirement; done < requirements.txt 
+   or simply use: pip install -r requirements.txt
+7) install tensorflow for gpu: 
+   pip3 install tensorflow-gpu
+   pip3 install --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.7.0-cp36-cp36m-linux_x86_64.whl
+   for validation: ipython -> 
+      import tensorflow as tf
+      hello = tf.constant('Hello, TensorFlow!')
+      sess = tf.Session()
+      print(sess.run(hello))
+8) install tensorpack: pip3 install tensorpack; pip3 install --upgrade tensorpack
+
 
 ##discussion with Pierre on Jan 29th
 1) start with a simple model: predicting motor activation from functional connectivity using sparse linear regression model 

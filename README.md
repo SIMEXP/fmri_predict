@@ -16,10 +16,10 @@ predicting fmri activaties from connectome
 4) activate env: source activate tensorflow-py3.6
 5) save packages info from another env2: pip3 freeze > requirements.txt 
 6) loading all requried packages: 
-   while read requirement; do conda install --yes $requirement || pip install $requirement; done < requirements.txt 
+   while read requirement; do conda install --yes $requirement || pip install $requirement; done < requirements.txt ;
    or simply use: pip install -r requirements.txt
 7) install tensorflow for gpu: 
-   pip3 install tensorflow-gpu
+   pip3 install tensorflow-gpu;
    pip3 install --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.7.0-cp36-cp36m-linux_x86_64.whl
    for validation: ipython -> 
       import tensorflow as tf

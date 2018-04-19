@@ -19,13 +19,15 @@ predicting fmri activaties from connectome
    while read requirement; do conda install --yes $requirement || pip install $requirement; done < requirements.txt ;
    or simply use: pip install -r requirements.txt
 7) install tensorflow for gpu: 
+   pip install --upgrade pip;
    pip3 install tensorflow-gpu;
    pip3 install --upgrade https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.7.0-cp36-cp36m-linux_x86_64.whl
    for validation: ipython -> 
-      import tensorflow as tf
-      hello = tf.constant('Hello, TensorFlow!')
-      sess = tf.Session()
-      print(sess.run(hello))
+      import tensorflow as tf;
+      hello = tf.constant('Hello, TensorFlow!');
+      sess = tf.Session();
+      print(sess.run(hello));
+   or simply run: python -c "import tensorflow as tf; print(tf.GIT_VERSION, tf.VERSION)"
 8) install tensorpack: pip3 install tensorpack; pip3 install --upgrade tensorpack
 
 

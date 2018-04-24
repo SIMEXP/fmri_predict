@@ -29,6 +29,7 @@ predicting fmri activaties from connectome
       print(sess.run(hello));
    or simply run: python -c "import tensorflow as tf; print(tf.GIT_VERSION, tf.VERSION)"
 8) install tensorpack: pip3 install tensorpack; pip3 install --upgrade tensorpack
+9) install notebook:  conda install -c anaconda ipykernel ; conda install -c anaconda notebook
 
 
 ##discussion with Pierre on Jan 29th

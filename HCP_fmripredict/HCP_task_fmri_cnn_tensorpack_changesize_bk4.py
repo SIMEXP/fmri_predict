@@ -991,13 +991,12 @@ if __name__ == '__main__':
     
     #########################################
     ###build the model
-    with tf.device("/cpu:0"):
-        if Flag_CNN_Model == '2d':
-            print('\nTraining the model using 2d-CNN with learning-rate: %s \n' % str(learning_rate))
-            model_test = build_cnn_model_test(img_shape, nb_class)
-        elif Flag_CNN_Model == '3d':
-            print('\nTraining the model using 3d-CNN with learning-rate: %s \n' % str(learning_rate))
-            model_test = build_cnn3d_model_test(img_shape, nb_class)
+    if Flag_CNN_Model == '2d':
+        print('\nTraining the model using 2d-CNN with learning-rate: %s \n' % str(learning_rate))
+        model_test = build_cnn_model_test(img_shape, nb_class)
+    elif Flag_CNN_Model == '3d':
+        print('\nTraining the model using 3d-CNN with learning-rate: %s \n' % str(learning_rate))
+        model_test = build_cnn3d_model_test(img_shape, nb_class)
 
     if USE_GPU_CPU and num_GPU > 1:
         # make the model parallel

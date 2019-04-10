@@ -35,8 +35,8 @@ from keras.optimizers import SGD, Adam, Nadam
 from keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard, LearningRateScheduler
 from keras.utils import to_categorical
 from keras.utils.training_utils import multi_gpu_model
-from keras.layers import Input, Dense, Flatten, Conv2D, MaxPooling2D, Dropout,AveragePooling2D
-from keras.layers import Conv3D, MaxPooling3D, BatchNormalization, AveragePooling3D
+from keras.layers import Input, Dense, Flatten, Conv2D, MaxPooling2D, Dropout, AveragePooling2D, GlobalAveragePooling2D
+from keras.layers import Conv3D, MaxPooling3D, BatchNormalization, AveragePooling3D, GlobalAveragePooling3D
 from keras.models import Model
 from keras import regularizers
 from keras import backend as K
@@ -97,17 +97,18 @@ target_name = np.unique(list(task_contrasts.values()))
 print(target_name)
 
 TR = 0.72
-nr_thread = 1 #4
-buffer_size = 2 #20     ##for tensorpack
-batch_size = 16      ##for training of fit_generator
+nr_thread = 4
+buffer_size = 10     ##for tensorpack
+batch_size = 64      ##for training of fit_generator
 kfold = 2
 test_size = 0.1
-val_size = 0.1
+val_size = 0.01
 #img_resize = 3
 Flag_Block_Trial = 0 #0
 block_dura = 1 #18 for motor, 39 for wm
+Trial_Num = 39
 
-
+dataselect_percent = 1.0
 learning_rate_decay = 0.9
 l2_reg = 0.0001
 Flag_CNN_Model = '2d'
@@ -118,21 +119,31 @@ if Flag_CNN_Model == '2d':
     steps = 500
     learning_rate = 0.001  # 0.001
     nepoch = 100
+    dataselect_percent = 1.0 #0.1
 elif Flag_CNN_Model == '3d':
-    #buffer_size=10 #40
+    buffer_size = 8 #40
+    batch_size = 8
     steps = 500
     learning_rate = 0.001 #0.001
     nepoch = 50
+if block_dura > 2:
+    batch_size = int(batch_size/2)
+batch_size = max(batch_size,8)
 ################################
-'''
+
 pathdata = Path('/home/yuzhang/scratch/HCP/aws_s3_HCP1200/FMRI/')
 pathout = '/home/yuzhang/scratch/HCP/temp_res_new/'
 
 '''
 pathdata = Path('/home/yu/PycharmProjects/HCP_data/aws_s3_HCP1200/FMRI/')
 pathout = "/home/yu/PycharmProjects/HCP_data/temp_res_new/"
+'''
 
-
+###global steps_Train, steps_Val, steps_Test
+steps_Train = 100000 #steps
+steps_Val = 1000 #steps
+steps_Test = 1000 #steps
+##dataselect_percent = 0.01 #round(block_dura/Trial_Num, 4)  #0.01
 ###################################################
 def load_fmri_data(pathdata,modality=None,confound_name=None):
     ###fMRI decoding: using event signals instead of activation pattern from glm
@@ -263,7 +274,7 @@ def load_event_files(fmri_files,confound_files,ev_filename=None):
         ##save the labels
         subjects_trial_labels.to_csv(events_all_subjects_file,sep='\t', encoding='utf-8',index=False)
 
-    block_dura = np.unique(Duras)[0]
+    block_dura = sum(Duras)
     return subjects_trial_label_matrix, sub_name, block_dura
 
 
@@ -274,7 +285,7 @@ class gen_fmri_file(dataflow.DataFlow):
     """ Iterate through fmri filenames, confound filenames and labels
     """
     def __init__(self, fmri_files,confound_files, label_matrix,data_type='train'):
-        assert (len(fmri_files) == len(confound_files))
+        assert (len(fmri_files) == len(label_matrix))
         # self.data=zip(fmri_files,confound_files)
         self.fmri_files = fmri_files
         self.confound_files = confound_files
@@ -283,7 +294,8 @@ class gen_fmri_file(dataflow.DataFlow):
         self.data_type=data_type
 
     def size(self):
-        return int(1e12)
+        #return min(len(self.fmri_files),len(self.label_matrix))
+        return int(1e8)
         #split_num=int(len(self.fmri_files)*0.8)
         #if self.data_type=='train':
         #    return split_num
@@ -293,30 +305,43 @@ class gen_fmri_file(dataflow.DataFlow):
     def get_data(self):
         assert self.data_type in ['train', 'val', 'test']
 
-        split_num=int(len(self.fmri_files))
-        if self.data_type=='train':
-            while True:
-                rand_pos=np.random.choice(split_num,1)[0]
-                yield self.fmri_files[rand_pos],self.confound_files[rand_pos],self.label_matrix.iloc[rand_pos]
-        else:
-            for pos_ in range(split_num):
-                yield self.fmri_files[pos_],self.confound_files[pos_],self.label_matrix.iloc[pos_]
+        split_num=min(len(self.fmri_files),len(self.label_matrix))
+        while True:
+            #rand_pos=np.random.choice(split_num,1,replace=False)[0]
+            rand_pos = np.random.randint(0, split_num)
+            yield self.fmri_files[rand_pos],self.confound_files[rand_pos],self.label_matrix.iloc[rand_pos]
+        #for pos_ in range(split_num):
+        #    yield self.fmri_files[pos_],self.confound_files[pos_],self.label_matrix.iloc[pos_]
 
 
 class split_samples(dataflow.DataFlow):
     """ Iterate through fmri filenames, confound filenames and labels
     """
-    def __init__(self, ds):
-        self.ds=ds
+    def __init__(self, ds, subject_num=1200, batch_size=16, dataselect_percent=1.0):
+        self.ds = ds
+        self.Subjects_Num = ds.size()
+        self.batch_size = batch_size
+        self.dataselect_percent = dataselect_percent
+
+    def __len__(self):
+        'Denotes the number of batches per epoch'
+        return int(self.size())
 
     def size(self):
         #return 91*284
-        return int(1e12)
+        ds_data_shape = self.data_info()
+        self.Trial_Num = ds_data_shape[0]
+        self.Block_dura = ds_data_shape[-1]
+        self.Samplesize = self.Subjects_Num * self.Trial_Num
+
+        #return self.Samplesize
+        return int(self.Samplesize / self.batch_size * self.dataselect_percent)
 
     def data_info(self):
-        for data in self.ds.get_data():
-            print('fmri/label data shape:',data[0].shape,data[1].shape)
-            return data[0].shape
+        ##for data in self.ds.get_data():
+        data = self.ds.get_data().__next__()
+        print('fmri/label data shape:',data[0].shape,data[1].shape)
+        return data[0].shape
 
     def get_data(self):
         for data in self.ds.get_data():
@@ -391,16 +416,17 @@ def map_load_fmri_image_3d(dp, target_name):
         fmri_data_clean = image.clean_img(fmri_file, detrend=False, standardize=True, confounds=confound, t_r=TR,ensure_finite=True,mask_img=mask_img)
     '''
     fmri_data_clean = fmri_file
-    '''
-    ##resample image into a smaller size to save memory
-    target_affine = np.diag((img_resize, img_resize, img_resize))
-    fmri_data_clean_resample = image.resample_img(fmri_data_clean, target_affine=target_affine)
-    ##print(fmri_data_clean_resample.get_data().shape)
-    '''
+    try:
+        ##resample image into a smaller size to save memory
+        target_affine = np.diag((img_resize, img_resize, img_resize))
+        fmri_data_clean_resample = image.resample_img(fmri_data_clean, target_affine=target_affine)
+    except:
+        fmri_data_clean_resample = fmri_data_clean
+
     ##pre-select task types
     trial_mask = pd.Series(label_trials).isin(target_name)  ##['hand', 'foot','tongue']
     #fmri_data_cnn = image.index_img(fmri_data_clean_resample, np.where(trial_mask)[0]).get_data()
-    fmri_data_cnn = image.index_img(fmri_data_clean, np.where(trial_mask)[0]).get_data().astype('float32',casting='same_kind')
+    fmri_data_cnn = image.index_img(fmri_data_clean_resample, np.where(trial_mask)[0]).get_data().astype('float32',casting='same_kind')
     img_rows, img_cols, img_deps = fmri_data_cnn.shape[:-1]
     #min_max_scaler = preprocessing.MinMaxScaler()
     #fmri_data_cnn = min_max_scaler.fit_transform(fmri_data_cnn.reshape(np.prod(fmri_data_cnn.shape[:-1]),fmri_data_cnn.shape[-1]))
@@ -416,7 +442,6 @@ def map_load_fmri_image_3d(dp, target_name):
     le.fit(target_name)
     label_data_cnn = le.transform(label_data_trial)  ##np_utils.to_categorical(): convert label vector to matrix
 
-    img_rows, img_cols, img_deps = fmri_data_cnn.shape[:-1]
     fmri_data_cnn_test = np.transpose(fmri_data_cnn, (3, 0, 1, 2))
     label_data_cnn_test = label_data_cnn.flatten()
     ##print(fmri_file, fmri_data_cnn_test.shape, label_data_cnn_test.shape)
@@ -425,7 +450,7 @@ def map_load_fmri_image_3d(dp, target_name):
     return fmri_data_cnn_test, label_data_cnn_test
 
 def data_pipe(fmri_files,confound_files,label_matrix,target_name=None,batch_size=32,data_type='train',
-              nr_thread=nr_thread,buffer_size=buffer_size):
+              nr_thread=nr_thread,buffer_size=buffer_size, dataselect_percent=1.0):
     assert data_type in ['train', 'val', 'test']
     assert fmri_files is not None
 
@@ -451,7 +476,7 @@ def data_pipe(fmri_files,confound_files,label_matrix,target_name=None,batch_size
 
     ds1 = dataflow.PrefetchData(ds1, buffer_size,1)
 
-    ds1 = split_samples(ds1)
+    ds1 = split_samples(ds1, subject_num=len(fmri_files), batch_size=batch_size, dataselect_percent=dataselect_percent)
     print('prefetch dataflowSize is ' + str(ds1.size()))
     Trial_Num = ds1.data_info()[0]
     print('%d #Trials/Samples per subject' % Trial_Num)
@@ -469,14 +494,17 @@ def data_pipe(fmri_files,confound_files,label_matrix,target_name=None,batch_size
     #return ds1.get_data()
     for df in ds1.get_data():
         ##print(np.expand_dims(df[0].astype('float32'),axis=3).shape)
-        yield (np.expand_dims(df[0].astype('float32'),axis=3),to_categorical(df[1].astype('uint8'),len(target_name)))
+        yield (np.expand_dims(df[0].astype('float32'),axis=3), to_categorical(df[1], len(target_name)).astype('uint8'))
 
 
 def data_pipe_3dcnn(fmri_files, confound_files, label_matrix, target_name=None, flag_cnn='3d', batch_size=32,
-                    data_type='train',nr_thread=nr_thread, buffer_size=buffer_size):
+                    data_type='train',nr_thread=nr_thread, buffer_size=buffer_size, dataselect_percent=1.0):
     assert data_type in ['train', 'val', 'test']
     assert flag_cnn in ['3d', '2d']
     assert fmri_files is not None
+    isTrain = data_type == 'train'
+    isVal = data_type == 'val'
+    isTest = data_type == 'test'
 
     print('\n\nGenerating dataflow for %s datasets \n' % data_type)
 
@@ -506,20 +534,24 @@ def data_pipe_3dcnn(fmri_files, confound_files, label_matrix, target_name=None, 
             buffer_size=buffer_size,
             strict=True)
 
-    ds1 = dataflow.PrefetchData(ds1, buffer_size, 1)
+    ds1 = dataflow.PrefetchData(ds1, buffer_size, 1) ##1
 
-    ds1 = split_samples(ds1)
-    print('prefetch dataflowSize is ' + str(ds1.size()))
-    Trial_Num = ds1.data_info()[0]
-    print('%d #Trials/Samples per subject' % Trial_Num)
+    ds1 = split_samples(ds1, subject_num=len(fmri_files), batch_size=batch_size, dataselect_percent=dataselect_percent)
+    dataflowSize = ds1.size()
+    print('prefetch dataflowSize is ' + str(dataflowSize))
 
-    #ds1 = dataflow.LocallyShuffleData(ds1, buffer_size=ds1.size() * buffer_size)
-    ds1 = dataflow.LocallyShuffleData(ds1, buffer_size=Trial_Num * buffer_size)
+
+    if isTrain:
+        Trial_Num = ds1.Trial_Num
+        ds1 = dataflow.LocallyShuffleData(ds1, buffer_size=Trial_Num * buffer_size, shuffle_interval=Trial_Num * buffer_size//2) #//2
 
     ds1 = dataflow.BatchData(ds1, batch_size=batch_size)
     print('Time Usage of loading data in seconds: {} \n'.format(time.clock() - start_time))
 
-    ds1 = dataflow.PrefetchDataZMQ(ds1, nr_proc=1)
+    if isTrain:
+        ds1 = dataflow.PrefetchDataZMQ(ds1, nr_proc=nr_thread) ##1
+    else:
+        ds1 = dataflow.PrefetchDataZMQ(ds1, nr_proc=1)  ##1
     ##ds1._reset_once()
     ds1.reset_state()
 
@@ -527,9 +559,9 @@ def data_pipe_3dcnn(fmri_files, confound_files, label_matrix, target_name=None, 
 
     for df in ds1.get_data():
         if flag_cnn == '2d':
-            yield (np.expand_dims(df[0].astype('float32'), axis=3),to_categorical(df[1].astype('uint8'), len(target_name)))
+            yield (np.expand_dims(df[0].astype('float32'), axis=3), to_categorical(df[1], len(target_name)).astype('uint8'))
         elif flag_cnn == '3d':
-            yield (np.expand_dims(df[0].astype('float32'), axis=4),to_categorical(df[1].astype('uint8'), len(target_name)))
+            yield (np.expand_dims(df[0].astype('float32'), axis=4), to_categorical(df[1], len(target_name)).astype('uint8'))
 
 
 #################################################################
@@ -572,15 +604,33 @@ def map_load_fmri_image_block(dp,target_name,block_dura=1):
     chunks = int(np.floor(len(label_data_trial) / block_dura))
     label_data_trial_block = np.array(np.split(label_data_trial, np.where(np.diff(label_data_int))[0] + 1))
     fmri_data_cnn_block = np.array_split(fmri_data_cnn, np.where(np.diff(label_data_int))[0] + 1, axis=3)
-    #ulabel = [np.unique(x) for x in label_data_trial_block]
-    #print("After cutting: unique values for each block of trials %s with %d blocks" % (np.array(ulabel), len(ulabel)))
-    if label_data_trial_block.shape[0] != chunks:
-        print("Wrong cutting of event data...")
-        print("Should have %d block-trials but only found %d cuts" % (chunks, label_data_trial_block.shape[0]))
-        label_data_trial_block = np.array(np.split(label_data_trial, chunks))
-        fmri_data_cnn_block = np.array_split(fmri_data_cnn, chunks, axis=3)
-        ulabel = [np.unique(x) for x in label_data_trial_block]
-        print("Adjust the cutting: unique values for each block of trials %s with %d blocks" % (np.array(ulabel), len(ulabel)))
+    trial_lengths = [label_data_trial_block[ii].shape[0] for ii in range(label_data_trial_block.shape[0])]
+    # ulabel = [np.unique(x) for x in label_data_trial_block]
+    # print("After cutting: unique values for each block of trials %s with %d blocks" % (np.array(ulabel), len(ulabel)))
+    if label_data_trial_block.shape[0] != chunks or len(np.unique(trial_lengths)) > 1:
+        # print("Wrong cutting of event data...")
+        # print("Should have %d block-trials but only found %d cuts" % (chunks, label_data_trial_block.shape[0]))
+        try:
+            label_data_trial_block = np.array(np.split(label_data_trial, chunks))
+            fmri_data_cnn_block = np.array_split(fmri_data_cnn, chunks, axis=3)
+            fmri_data_cnn = None
+        except:
+            ##reshape based on both trial continous and block_dura
+            fmri_data_cnn = None
+            label_data_trial_block_new = []
+            fmri_data_cnn_block_new = []
+            blocks_num = label_data_trial_block.shape[0]
+            for bi in range(blocks_num):
+                trial_num_used = len(label_data_trial_block[bi]) // block_dura * block_dura
+                label_data_trial_block_new.append(np.array(np.split(label_data_trial_block[bi][:trial_num_used], trial_num_used // block_dura)))
+                fmri_data_cnn_block_new.append(
+                    np.array(np.split(fmri_data_cnn_block[bi][:, :, :, :trial_num_used], trial_num_used // block_dura, axis=-1)))
+            label_data_trial_block = np.concatenate([label_data_trial_block_new[ii] for ii in range(blocks_num)], axis=0)
+            fmri_data_cnn_block = np.concatenate([fmri_data_cnn_block_new[ii] for ii in range(blocks_num)], axis=0)
+            fmri_data_cnn_block_new = None
+            chunks = blocks_num
+        # ulabel = [np.unique(x) for x in label_data_trial_block]
+        # print("Adjust the cutting: unique values for each block of trials %s with %d blocks" % (np.array(ulabel), len(ulabel)))
 
     label_data = np.array([label_data_trial_block[i][:block_dura] for i in range(chunks)])
     label_data_cnn_test = le.transform(np.repeat(label_data[:, 0], img_deps, axis=0)).flatten()
@@ -610,17 +660,17 @@ def map_load_fmri_image_3d_block(dp, target_name,block_dura=1):
     fmri_data_clean = image.clean_img(fmri_file, detrend=False, standardize=True, confounds=confound, t_r=TR,ensure_finite=True,mask_img=mask_img)
     '''
     fmri_data_clean = fmri_file
-    '''
-    ##resample image into a smaller size to save memory
-    target_affine = np.diag((img_resize, img_resize, img_resize))
-    fmri_data_clean_resample = image.resample_img(fmri_data_clean, target_affine=target_affine)
-    ##print(fmri_data_clean_resample.get_data().shape)
-    '''
+    try:
+        ##resample image into a smaller size to save memory
+        target_affine = np.diag((img_resize, img_resize, img_resize))
+        fmri_data_clean_resample = image.resample_img(fmri_data_clean, target_affine=target_affine)
+    except:
+        fmri_data_clean_resample = fmri_data_clean
 
     ##pre-select task types
     trial_mask = pd.Series(label_trials).isin(target_name)  ##['hand', 'foot','tongue']
     #fmri_data_cnn = image.index_img(fmri_data_clean_resample, np.where(trial_mask)[0]).get_data()
-    fmri_data_cnn = image.index_img(fmri_data_clean, np.where(trial_mask)[0]).get_data().astype('float32',casting='same_kind')
+    fmri_data_cnn = image.index_img(fmri_data_clean_resample, np.where(trial_mask)[0]).get_data().astype('float32',casting='same_kind')
     img_rows, img_cols, img_deps = fmri_data_cnn.shape[:-1]
     #min_max_scaler = preprocessing.MinMaxScaler()
     #fmri_data_cnn = min_max_scaler.fit_transform(fmri_data_cnn.reshape(np.prod(fmri_data_cnn.shape[:-1]),fmri_data_cnn.shape[-1]))
@@ -640,15 +690,35 @@ def map_load_fmri_image_3d_block(dp, target_name,block_dura=1):
     chunks = int(np.floor(len(label_data_trial) / block_dura))
     label_data_trial_block = np.array(np.split(label_data_trial, np.where(np.diff(label_data_int))[0] + 1))
     fmri_data_cnn_block = np.array_split(fmri_data_cnn, np.where(np.diff(label_data_int))[0] + 1, axis=3)
-    #ulabel = [np.unique(x) for x in label_data_trial_block]
-    #print("After cutting: unique values for each block of trials %s with %d blocks" % (np.array(ulabel), len(ulabel)))
-    if label_data_trial_block.shape[0] != chunks:
-        print("Wrong cutting of event data...")
-        print("Should have %d block-trials but only found %d cuts" % (chunks, label_data_trial_block.shape[0]))
-        label_data_trial_block = np.array(np.split(label_data_trial, chunks))
-        fmri_data_cnn_block = np.array_split(fmri_data_cnn, chunks, axis=3)
-        ulabel = [np.unique(x) for x in label_data_trial_block]
-        print("Adjust the cutting: unique values for each block of trials %s with %d blocks" % (np.array(ulabel), len(ulabel)))
+    trial_lengths = [label_data_trial_block[ii].shape[0] for ii in range(label_data_trial_block.shape[0])]
+    # ulabel = [np.unique(x) for x in label_data_trial_block]
+    # print("After cutting: unique values for each block of trials %s with %d blocks" % (np.array(ulabel), len(ulabel)))
+    if label_data_trial_block.shape[0] != chunks or len(np.unique(trial_lengths)) > 1:
+        # print("Wrong cutting of event data...")
+        # print("Should have %d block-trials but only found %d cuts" % (chunks, label_data_trial_block.shape[0]))
+        try:
+            label_data_trial_block = np.array(np.split(label_data_trial, chunks))
+            fmri_data_cnn_block = np.array_split(fmri_data_cnn, chunks, axis=3)
+            fmri_data_cnn = None
+        except:
+            ##reshape based on both trial continous and block_dura
+            fmri_data_cnn = None
+            label_data_trial_block_new = []
+            fmri_data_cnn_block_new = []
+            chunks = 0
+            blocks_num = label_data_trial_block.shape[0]
+            for bi in range(blocks_num):
+                trial_num_used = len(label_data_trial_block[bi]) // block_dura * block_dura
+                chunks += trial_num_used // block_dura
+                label_data_trial_block_new.append(np.array(np.split(label_data_trial_block[bi][:trial_num_used], trial_num_used // block_dura)))
+                fmri_data_cnn_block_new.append(
+                    np.array(np.split(fmri_data_cnn_block[bi][:, :, :, :trial_num_used], trial_num_used // block_dura, axis=-1)))
+            label_data_trial_block = np.concatenate([label_data_trial_block_new[ii] for ii in range(blocks_num)], axis=0)
+            fmri_data_cnn_block = np.concatenate([fmri_data_cnn_block_new[ii] for ii in range(blocks_num)], axis=0)
+            fmri_data_cnn_block_new = None
+            chunks = blocks_num
+        # ulabel = [np.unique(x) for x in label_data_trial_block]
+        # print("Adjust the cutting: unique values for each block of trials %s with %d blocks" % (np.array(ulabel), len(ulabel)))
 
     label_data = np.array([label_data_trial_block[i][:block_dura] for i in range(chunks)])
     label_data_cnn_test = le.transform(label_data[:, 0]).flatten()
@@ -661,10 +731,13 @@ def map_load_fmri_image_3d_block(dp, target_name,block_dura=1):
     return fmri_data_cnn_test, label_data_cnn_test
 
 def data_pipe_3dcnn_block(fmri_files, confound_files, label_matrix, target_name=None, flag_cnn='3d', block_dura=1,
-                    batch_size=32,data_type='train', nr_thread=nr_thread, buffer_size=buffer_size):
+                    batch_size=32,data_type='train', nr_thread=nr_thread, buffer_size=buffer_size, dataselect_percent=1.0):
     assert data_type in ['train', 'val', 'test']
     assert flag_cnn in ['3d', '2d']
     assert fmri_files is not None
+    isTrain = data_type == 'train'
+    isVal = data_type == 'val'
+    isTest = data_type == 'test'
 
     print('\n\nGenerating dataflow for %s datasets \n' % data_type)
 
@@ -694,30 +767,33 @@ def data_pipe_3dcnn_block(fmri_files, confound_files, label_matrix, target_name=
             buffer_size=buffer_size,
             strict=True)
 
-    ds1 = dataflow.PrefetchData(ds1, buffer_size, 1)
+    ds1 = dataflow.PrefetchData(ds1, buffer_size, 1) ##1
 
-    ds1 = split_samples(ds1)
-    print('prefetch dataflowSize is ' + str(ds1.size()))
-    ds_data_shape= ds1.data_info()
-    Trial_Num = ds_data_shape[0]
-    Block_dura = ds_data_shape[-1]
-    print('%d #Trials/Samples per subject with %d channels in tc' % (Trial_Num,Block_dura))
+    ds1 = split_samples(ds1, subject_num=len(fmri_files), batch_size=batch_size, dataselect_percent=dataselect_percent)
+    dataflowSize = ds1.size()
+    print('prefetch dataflowSize is ' + str(dataflowSize))
 
-    #ds1 = dataflow.LocallyShuffleData(ds1, buffer_size=ds1.size() * buffer_size)
-    ds1 = dataflow.LocallyShuffleData(ds1, buffer_size=Trial_Num * buffer_size)
+
+    if isTrain:
+        print('%d #Trials/Samples per subject with %d channels in tc' % (ds1.Trial_Num, ds1.Block_dura))
+        Trial_Num = ds1.Trial_Num
+        ds1 = dataflow.LocallyShuffleData(ds1, buffer_size=Trial_Num * buffer_size, shuffle_interval=Trial_Num * buffer_size//2) #//2
 
     ds1 = dataflow.BatchData(ds1, batch_size=batch_size)
     print('Time Usage of loading data in seconds: {} \n'.format(time.clock() - start_time))
 
-    ds1 = dataflow.PrefetchDataZMQ(ds1, nr_proc=1)
+    if isTrain:
+        ds1 = dataflow.PrefetchDataZMQ(ds1, nr_proc=nr_thread) ##1
+    else:
+        ds1 = dataflow.PrefetchDataZMQ(ds1, nr_proc=1)  ##1
     ##ds1._reset_once()
     ds1.reset_state()
 
     for df in ds1.get_data():
         if flag_cnn == '2d':
-            yield (df[0].astype('float32'),to_categorical(df[1].astype('uint8'), len(target_name)))
+            yield (df[0].astype('float32'), to_categorical(df[1], len(target_name)).astype('uint8'))
         elif flag_cnn == '3d':
-            yield (df[0].astype('float32'),to_categorical(df[1].astype('uint8'), len(target_name)))
+            yield (df[0].astype('float32'), to_categorical(df[1], len(target_name)).astype('uint8'))
 
 ###end of tensorpack: multithread
 ##############################################################
@@ -875,10 +951,11 @@ def build_cnn_model_test(input_shape, Nlabels, filters=16, convsize=3, convsize2
             filters *= 2
 
     drop2 = drop1
-    avg1 = AveragePooling2D(pool_size=(5, 5))(drop2)
-    flat = Flatten()(avg1)
-    hidden = Dense(hidden_size, kernel_initializer='he_normal',kernel_regularizer=regularizers.l2(l2_reg), activation='relu')(flat)
-    drop3 = Dropout(0.4)(hidden)
+    #avg1 = AveragePooling2D(pool_size=(5, 5))(drop2)
+    avg1 = GlobalAveragePooling2D(name='avg_pool')(drop2)
+    ##flat = Flatten()(avg1)
+    hidden = Dense(hidden_size, kernel_initializer='he_normal',kernel_regularizer=regularizers.l2(l2_reg), activation='relu')(avg1)
+    drop3 = Dropout(0.5)(hidden)
     #hidden = Dense(int(hidden_size/4),kernel_initializer='he_normal',kernel_regularizer=regularizers.l2(l2_reg), activation='relu')(drop3)
     #drop4 = Dropout(0.5)(hidden)
 
@@ -927,10 +1004,10 @@ def build_cnn3d_model_test(input_shape, Nlabels, filters=8, convsize=3, convsize
             filters *= 2
 
     drop2 = drop1
-    avg1 = AveragePooling3D(pool_size=(5, 5, 5))(drop2)
-    flat = Flatten()(avg1)
-    hidden = Dense(hidden_size, kernel_initializer='he_normal',kernel_regularizer=regularizers.l2(l2_reg), activation='relu')(flat)
-    drop3 = Dropout(0.4)(hidden)
+    avg1 = GlobalAveragePooling3D(name='avg_pool')(drop2)
+    ##flat = Flatten()(avg1)
+    hidden = Dense(hidden_size, kernel_initializer='he_normal',kernel_regularizer=regularizers.l2(l2_reg), activation='relu')(avg1)
+    drop3 = Dropout(0.5)(hidden)
     #hidden = Dense(int(hidden_size/4),kernel_initializer='he_normal',kernel_regularizer=regularizers.l2(l2_reg), activation='relu')(drop3)
     #drop4 = Dropout(0.5)(hidden)
 
@@ -970,14 +1047,20 @@ if __name__ == '__main__':
                 img_shape = (block_dura, img_rows, img_cols)
             elif K.image_data_format() == 'channels_last':
                 img_shape = (img_rows, img_cols, block_dura)
+
+            steps = int(Trial_dura * img_deps / block_dura)
         elif Flag_CNN_Model == '3d':
-            ##fmri_data_resample = image.resample_img(fmri_files[0], target_affine=np.diag((img_resize, img_resize, img_resize)))
-            fmri_data_resample = nib.load(fmri_files[0])
+            try:
+                fmri_data_resample = image.resample_img(fmri_files[0], target_affine=np.diag((img_resize, img_resize, img_resize)))
+            except:
+                fmri_data_resample = nib.load(fmri_files[0])
             img_rows, img_cols, img_deps = fmri_data_resample.get_data().shape[:-1]
             if K.image_data_format() == 'channels_first':
                 img_shape = (block_dura, img_rows, img_cols, img_deps)
             elif K.image_data_format() == 'channels_last':
                 img_shape = (img_rows, img_cols, img_deps, block_dura)
+
+            steps = int(Trial_dura / block_dura)
         print("fmri data in shape: ",img_shape)
 
     #########################################
@@ -1000,14 +1083,15 @@ if __name__ == '__main__':
     sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
     nadam = Nadam(lr=learning_rate)
     model_test_GPU.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
-
+    sys.stdout.flush()
     #########################################
     ######start training the model
     #####Picking the output with the highest validation accuracy is generally a good approach.best to look at error 
     ##model_name = 'checkpoints/' + 'model_test_' + Flag_CNN_Model + 'cnn_' + modality
     model_name = "checkpoints/{}_model_test_{}cnn_lr{}_{}".format(modality,Flag_CNN_Model,learning_rate,datetime.datetime.now().strftime("%m-%d-%H"))
 
-    tensorboard = TensorBoard(log_dir="logs/{}_{}cnn_win{}_lr{}_{}".format(modality,Flag_CNN_Model,block_dura,learning_rate,datetime.datetime.now().strftime("%m-%d-%Y-%H:%M")))
+    tensorboard = TensorBoard(log_dir="logs/{}_{}cnn_win{}_lr{}_{}".format(modality,Flag_CNN_Model,block_dura,learning_rate,datetime.datetime.now().strftime("%m-%d-%Y-%H:%M")),
+                              histogram_freq=0)
     early_stopping_callback = EarlyStopping(monitor='val_acc', patience=20, mode='max')
     checkpoint_callback = ModelCheckpoint(model_name+'.h5', monitor='val_acc', verbose=1, save_best_only=True, mode='max')
     '''
@@ -1044,16 +1128,18 @@ if __name__ == '__main__':
     if test_sub_num<5: test_sub_num=len(fmri_files)
     if Flag_Block_Trial == 0:
         test_set = data_pipe_3dcnn(fmri_files[test_sub_num:], confound_files[test_sub_num:],label_matrix.iloc[test_sub_num:],
-                                  target_name=target_name, flag_cnn=Flag_CNN_Model,
+                                  target_name=target_name, flag_cnn=Flag_CNN_Model, dataselect_percent=dataselect_percent,
                                   batch_size=batch_size, data_type='test', nr_thread=nr_thread, buffer_size=buffer_size)
     else:
         test_set = data_pipe_3dcnn_block(fmri_files[test_sub_num:], confound_files[test_sub_num:],label_matrix.iloc[test_sub_num:],
-                                      target_name=target_name, flag_cnn=Flag_CNN_Model, block_dura=block_dura,
+                                      target_name=target_name, flag_cnn=Flag_CNN_Model, block_dura=block_dura, dataselect_percent=dataselect_percent,
                                       batch_size=batch_size, data_type='test', nr_thread=nr_thread, buffer_size=buffer_size)
 
     rs = np.random.RandomState(1234)
     for cvi in range(kfold):
         print('cv-fold: %d ...' % cvi)
+        print('Model fitting for {} volumes and {} discount on volumes/trials, using batch-size={} for epoch={}'.
+              format(block_dura,dataselect_percent, batch_size, nepoch))
         ########spliting into train,val and testing
         train_sid, val_sid = train_test_split(range(test_sub_num), test_size=val_size, random_state=rs, shuffle=True)
         if len(train_sid) < 2 or len(val_sid) < 2:
@@ -1076,39 +1162,48 @@ if __name__ == '__main__':
         confounds_val = np.array([confound_files[i] for i in val_sid])
         label_val = pd.DataFrame(np.array([label_matrix.iloc[i] for i in val_sid]))
 
+        steps_Train = int(steps * len(fmri_data_train) *dataselect_percent)
+        steps_Val = steps * len(fmri_data_val)
+        steps_Test = steps * (len(fmri_files) - test_sub_num)
         #########################################  
         if Flag_Block_Trial == 0:
             ######start cnn model
             train_gen = data_pipe_3dcnn(fmri_data_train, confounds_train,label_train,
-                                        target_name=target_name, flag_cnn=Flag_CNN_Model,
+                                        target_name=target_name, flag_cnn=Flag_CNN_Model, dataselect_percent=dataselect_percent,
                                         batch_size=batch_size, data_type='train', nr_thread=nr_thread, buffer_size=buffer_size)
             val_set = data_pipe_3dcnn(fmri_data_val, confounds_val,label_val,
-                                      target_name=target_name, flag_cnn=Flag_CNN_Model,
+                                      target_name=target_name, flag_cnn=Flag_CNN_Model, dataselect_percent=dataselect_percent,
                                       batch_size=batch_size, data_type='val', nr_thread=nr_thread, buffer_size=buffer_size)
         else:
             #########################################
             train_gen = data_pipe_3dcnn_block(fmri_data_train, confounds_train,label_train,
-                                              target_name=target_name, flag_cnn=Flag_CNN_Model, block_dura=block_dura,
+                                              target_name=target_name, flag_cnn=Flag_CNN_Model, block_dura=block_dura, dataselect_percent=dataselect_percent,
                                               batch_size=batch_size, data_type='train', nr_thread=nr_thread, buffer_size=buffer_size)
             val_set = data_pipe_3dcnn_block(fmri_data_val, confounds_val,label_val,
-                                            target_name=target_name, flag_cnn=Flag_CNN_Model, block_dura=block_dura,
+                                            target_name=target_name, flag_cnn=Flag_CNN_Model, block_dura=block_dura, dataselect_percent=dataselect_percent,
                                             batch_size=batch_size, data_type='val', nr_thread=nr_thread, buffer_size=buffer_size)
     
         #########################################    
+        ######to calculate the step parameters
+        #model_test_history2 = model_test_GPU.fit_generator(train_gen, epochs=1, steps_per_epoch=1, validation_data=val_set, validation_steps=1, verbose=0)
+
         ######start training the model
-        print('\nTraining the model on %d subjects and validated on %d \n' % (len(train_sid),len(val_sid)))
-        model_test_history2 = model_test_GPU.fit_generator(train_gen, epochs=nepoch, steps_per_epoch=steps,
-                                                           validation_data=val_set,validation_steps=100, verbose=1,shuffle=True
+        print('\nTraining the model on {} subjects using {} steps and validated on {} subjects with {} steps \n'.
+              format(len(train_sid),steps_Train, len(val_sid), steps_Val))
+        model_test_history2 = model_test_GPU.fit_generator(train_gen, epochs=nepoch, steps_per_epoch=steps_Train,
+                                                           validation_data=val_set,validation_steps=steps_Val, verbose=1,shuffle=True,
                                                            ##callbacks=[tensorboard,checkpoint_callback,early_stopping_callback],
-                                                            ) ##workers=1, use_multiprocessing=False)
+                                                           ) ###workers=1, use_multiprocessing=False)
         print(model_test_history2.history)
+        sys.stdout.flush()
         ## visualized with TensorBoad launched at the command line:
         ## tensorboard --logdir=logs/
 
         print('\nEvaluating the model performance on test-set of %d subjects \n' % (len(fmri_files[test_sub_num:])))
-        scores = model_test_GPU.evaluate_generator(test_set, steps=100, workers=1)
+        scores = model_test_GPU.evaluate_generator(test_set, steps=steps_Test, workers=1)
         print(model_test_GPU.metrics_names)
         print(scores)
+        sys.stdout.flush()
 
 
     sys.exit(0)

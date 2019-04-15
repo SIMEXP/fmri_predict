@@ -3,10 +3,17 @@ import numpy as np
 import time
 import sys, os
 sys.path.append('/home/yu/PycharmProjects/HCP_fmripredict/')
-from cnn_graph.lib_new import models, graph, coarsening, utils
+from cnn_graph.lib import models, graph, coarsening, utils
 
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
+
+num_CPU = 2
+config_TF = tf.ConfigProto(intra_op_parallelism_threads=num_CPU,\
+        inter_op_parallelism_threads=num_CPU, allow_soft_placement=True,\
+        device_count = {'CPU' : num_CPU})
+session = tf.Session(config=config_TF)
+
 flags = tf.app.flags
 FLAGS = flags.FLAGS
 
@@ -89,7 +96,8 @@ params['p']              = []
 params['M']              = [C]
 
 ####training and testing models
-model_perf.test(models.cgcnn(L, **params), name, params,
+print(L)
+model_perf.test(models.cgcnn(config_TF, L, **params), name, params,
                 train_data_perm, train_labels, val_data_perm, val_labels, test_data_perm, test_labels)
 
 
@@ -109,7 +117,7 @@ params = common.copy()
 params['dir_name'] += name
 params['filter'] = 'fourier'
 params['K'] = [L[0].shape[0]]
-model_perf.test(models.cgcnn(L, **params), name, params,
+model_perf.test(models.cgcnn(config_TF,L, **params), name, params,
                 train_data_perm, train_labels, val_data_perm, val_labels, test_data_perm, test_labels)
 
 ##model#3: one-layer convolution with chebyshev5 and b1relu as filters
@@ -119,7 +127,7 @@ params['dir_name'] += name
 params['filter'] = 'chebyshev5'
 #    params['filter'] = 'chebyshev2'
 #    params['brelu'] = 'b2relu'
-model_perf.test(models.cgcnn(L, **params), name, params,
+model_perf.test(models.cgcnn(config_TF,L, **params), name, params,
                 train_data_perm, train_labels, val_data_perm, val_labels, test_data_perm, test_labels)
 
 ##model#4: two convolutional layers with fourier transform as filters
@@ -141,7 +149,7 @@ params['K'] = [L[0].shape[0], L[2].shape[0]]
 print([L[li].shape for li in range(len(L))])
 
 t_start = time.process_time()
-model_perf.test(models.cgcnn(L, **params), name, params,
+model_perf.test(models.cgcnn(config_TF,L, **params), name, params,
                 train_data_perm, train_labels, val_data_perm, val_labels, test_data_perm, test_labels)
 print('Execution time: {:.2f}s'.format(time.process_time() - t_start))
 
@@ -155,7 +163,7 @@ print(params)
 print([L[li].shape for li in range(len(L))])
 
 t_start = time.process_time()
-model_perf.test(models.cgcnn(L, **params), name, params,
+model_perf.test(models.cgcnn(config_TF,L, **params), name, params,
                 train_data_perm, train_labels, val_data_perm, val_labels, test_data_perm, test_labels)
 print('Execution time: {:.2f}s'.format(time.process_time() - t_start))
 

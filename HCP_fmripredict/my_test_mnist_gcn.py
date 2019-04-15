@@ -97,9 +97,12 @@ params['M']              = [C]
 
 ####training and testing models
 print(L)
+
+t_start = time.process_time()
 model_perf.test(models.cgcnn(config_TF, L, **params), name, params,
                 train_data_perm, train_labels, val_data_perm, val_labels, test_data_perm, test_labels)
-
+t_end_1 = time.process_time() - t_start
+print('Model {}; Execution time: {:.2f}s\n\n'.format(name, t_end_1))
 
 ###model#2: one-layer convolution with fourier transform as filter
 common['regularization'] = 0
@@ -117,8 +120,12 @@ params = common.copy()
 params['dir_name'] += name
 params['filter'] = 'fourier'
 params['K'] = [L[0].shape[0]]
-model_perf.test(models.cgcnn(config_TF,L, **params), name, params,
+
+t_start = time.process_time()
+model_perf.test(models.cgcnn(config_TF, L, **params), name, params,
                 train_data_perm, train_labels, val_data_perm, val_labels, test_data_perm, test_labels)
+t_end_2 = time.process_time() - t_start
+print('Model {}; Execution time: {:.2f}s\n\n'.format(name, t_end_2))
 
 ##model#3: one-layer convolution with chebyshev5 and b1relu as filters
 name = 'cgconv_softmax'
@@ -127,8 +134,12 @@ params['dir_name'] += name
 params['filter'] = 'chebyshev5'
 #    params['filter'] = 'chebyshev2'
 #    params['brelu'] = 'b2relu'
+
+t_start = time.process_time()
 model_perf.test(models.cgcnn(config_TF,L, **params), name, params,
                 train_data_perm, train_labels, val_data_perm, val_labels, test_data_perm, test_labels)
+t_end_3 = time.process_time() - t_start
+print('Model {}; Execution time: {:.2f}s\n\n'.format(name, t_end_3))
 
 ##model#4: two convolutional layers with fourier transform as filters
 common['regularization'] = 5e-4
@@ -151,7 +162,9 @@ print([L[li].shape for li in range(len(L))])
 t_start = time.process_time()
 model_perf.test(models.cgcnn(config_TF,L, **params), name, params,
                 train_data_perm, train_labels, val_data_perm, val_labels, test_data_perm, test_labels)
-print('Execution time: {:.2f}s'.format(time.process_time() - t_start))
+t_end_4 = time.process_time() - t_start
+print('Model {}; Execution time: {:.2f}s\n\n'.format(name, t_end_4))
+
 
 
 ##model#5: two convolutional layers with Chebyshev polynomial as filters
@@ -165,8 +178,15 @@ print([L[li].shape for li in range(len(L))])
 t_start = time.process_time()
 model_perf.test(models.cgcnn(config_TF,L, **params), name, params,
                 train_data_perm, train_labels, val_data_perm, val_labels, test_data_perm, test_labels)
-print('Execution time: {:.2f}s'.format(time.process_time() - t_start))
+t_end_5 = time.process_time() - t_start
+print('Model {}; Execution time: {:.2f}s\n\n'.format(name, t_end_5))
+
 
 
 ###summary
 model_perf.show()
+print('Execution time for model1: {:.2f}s\n\n'.format(t_end_1))
+print('Execution time for model2: {:.2f}s\n\n'.format(t_end_2))
+print('Execution time for model3: {:.2f}s\n\n'.format(t_end_3))
+print('Execution time for model4: {:.2f}s\n\n'.format(t_end_4))
+print('Execution time for model5: {:.2f}s\n\n'.format(t_end_5))

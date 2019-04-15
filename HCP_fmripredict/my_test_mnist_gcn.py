@@ -1,3 +1,8 @@
+#!/home/yuzhang/tensorflow-py3.6/bin/python3.6
+
+# Author: Yu Zhang
+# License: simplified BSD
+# coding: utf-8
 
 import numpy as np
 import time

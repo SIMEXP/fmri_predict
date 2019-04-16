@@ -1,0 +1,570 @@
+2019-04-15 12:55:10.827203: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: Tesla P100-PCIE-12GB major: 6 minor: 0 memoryClockRate(GHz): 1.3285
+pciBusID: 0000:83:00.0
+totalMemory: 11.91GiB freeMemory: 11.66GiB
+2019-04-15 12:55:10.828896: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2019-04-15 12:55:15.645544: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-04-15 12:55:15.645639: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2019-04-15 12:55:15.645663: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2019-04-15 12:55:15.660472: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11275 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-12GB, pci bus id: 0000:83:00.0, compute capability: 6.0)
+WARNING:tensorflow:From /var/spool/slurmd/job19590049/slurm_script:57: read_data_sets (from tensorflow.contrib.learn.python.learn.datasets.mnist) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use alternatives such as official/mnist/dataset.py from tensorflow/models.
+WARNING:tensorflow:From /home/yuzhang/tensorflow-py3.6/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/datasets/mnist.py:260: maybe_download (from tensorflow.contrib.learn.python.learn.datasets.base) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please write your own downloading logic.
+WARNING:tensorflow:From /home/yuzhang/tensorflow-py3.6/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/datasets/base.py:252: _internal_retry.<locals>.wrap.<locals>.wrapped_fn (from tensorflow.contrib.learn.python.learn.datasets.base) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use urllib or similar directly.
+WARNING:tensorflow:From /home/yuzhang/tensorflow-py3.6/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/datasets/mnist.py:262: extract_images (from tensorflow.contrib.learn.python.learn.datasets.mnist) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tf.data to implement this functionality.
+WARNING:tensorflow:From /home/yuzhang/tensorflow-py3.6/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/datasets/mnist.py:267: extract_labels (from tensorflow.contrib.learn.python.learn.datasets.mnist) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use tf.data to implement this functionality.
+WARNING:tensorflow:From /home/yuzhang/tensorflow-py3.6/lib/python3.6/site-packages/tensorflow/contrib/learn/python/learn/datasets/mnist.py:290: DataSet.__init__ (from tensorflow.contrib.learn.python.learn.datasets.mnist) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use alternatives such as official/mnist/dataset.py from tensorflow/models.
+Successfully downloaded train-images-idx3-ubyte.gz 9912422 bytes.
+Extracting ../data/mnist/train-images-idx3-ubyte.gz
+Successfully downloaded train-labels-idx1-ubyte.gz 28881 bytes.
+Extracting ../data/mnist/train-labels-idx1-ubyte.gz
+Successfully downloaded t10k-images-idx3-ubyte.gz 1648877 bytes.
+Extracting ../data/mnist/t10k-images-idx3-ubyte.gz
+Successfully downloaded t10k-labels-idx1-ubyte.gz 4542 bytes.
+Extracting ../data/mnist/t10k-labels-idx1-ubyte.gz
+2019-04-15 12:55:19.451568: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2019-04-15 12:55:19.451674: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-04-15 12:55:19.451701: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2019-04-15 12:55:19.451719: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2019-04-15 12:55:19.452479: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11275 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-12GB, pci bus id: 0000:83:00.0, compute capability: 6.0)
+3198 > 3136 edges
+Layer 0: M_0 = |V| = 960 nodes (176 added),|E| = 3197 edges
+Layer 1: M_1 = |V| = 480 nodes (65 added),|E| = 1532 edges
+Layer 2: M_2 = |V| = 240 nodes (24 added),|E| = 758 edges
+Layer 3: M_3 = |V| = 120 nodes (8 added),|E| = 398 edges
+Layer 4: M_4 = |V| = 60 nodes (0 added),|E| = 228 edges
+[<960x960 sparse matrix of type '<class 'numpy.float32'>'
+	with 7354 stored elements in Compressed Sparse Row format>, <480x480 sparse matrix of type '<class 'numpy.float32'>'
+	with 3544 stored elements in Compressed Sparse Row format>, <240x240 sparse matrix of type '<class 'numpy.float32'>'
+	with 1756 stored elements in Compressed Sparse Row format>, <120x120 sparse matrix of type '<class 'numpy.float32'>'
+	with 916 stored elements in Compressed Sparse Row format>, <60x60 sparse matrix of type '<class 'numpy.float32'>'
+	with 516 stored elements in Compressed Sparse Row format>]
+NN architecture
+  input: M_0 = 960
+  layer 1: logits (softmax)
+    representation: M_1 = 10
+    weights: M_0 * M_1 = 960 * 10 = 9600
+    biases: M_1 = 10
+step 600 / 11000 (epoch 1.09 / 20):
+  learning_rate = 1.90e-02, loss_average = 3.66e-01
+  validation accuracy: 91.10 (4555 / 5000), f1 (weighted): 91.06, loss: 3.56e-01
+  time: 3s (wall 3s)
+step 1200 / 11000 (epoch 2.18 / 20):
+  learning_rate = 1.80e-02, loss_average = 3.58e-01
+  validation accuracy: 91.40 (4570 / 5000), f1 (weighted): 91.38, loss: 3.37e-01
+  time: 4s (wall 4s)
+step 1800 / 11000 (epoch 3.27 / 20):
+  learning_rate = 1.71e-02, loss_average = 3.31e-01
+  validation accuracy: 92.20 (4610 / 5000), f1 (weighted): 92.17, loss: 3.24e-01
+  time: 6s (wall 5s)
+step 2400 / 11000 (epoch 4.36 / 20):
+  learning_rate = 1.63e-02, loss_average = 3.30e-01
+  validation accuracy: 92.04 (4602 / 5000), f1 (weighted): 92.01, loss: 3.19e-01
+  time: 8s (wall 7s)
+step 3000 / 11000 (epoch 5.45 / 20):
+  learning_rate = 1.55e-02, loss_average = 3.47e-01
+  validation accuracy: 92.56 (4628 / 5000), f1 (weighted): 92.55, loss: 3.16e-01
+  time: 10s (wall 8s)
+step 3600 / 11000 (epoch 6.55 / 20):
+  learning_rate = 1.47e-02, loss_average = 3.37e-01
+  validation accuracy: 92.40 (4620 / 5000), f1 (weighted): 92.37, loss: 3.15e-01
+  time: 12s (wall 9s)
+step 4200 / 11000 (epoch 7.64 / 20):
+  learning_rate = 1.40e-02, loss_average = 3.29e-01
+  validation accuracy: 92.32 (4616 / 5000), f1 (weighted): 92.31, loss: 3.13e-01
+  time: 14s (wall 10s)
+step 4800 / 11000 (epoch 8.73 / 20):
+  learning_rate = 1.33e-02, loss_average = 3.50e-01
+  validation accuracy: 92.68 (4634 / 5000), f1 (weighted): 92.67, loss: 3.13e-01
+  time: 16s (wall 11s)
+step 5400 / 11000 (epoch 9.82 / 20):
+  learning_rate = 1.26e-02, loss_average = 3.13e-01
+  validation accuracy: 92.48 (4624 / 5000), f1 (weighted): 92.46, loss: 3.10e-01
+  time: 18s (wall 12s)
+step 6000 / 11000 (epoch 10.91 / 20):
+  learning_rate = 1.20e-02, loss_average = 3.21e-01
+  validation accuracy: 92.60 (4630 / 5000), f1 (weighted): 92.58, loss: 3.12e-01
+  time: 20s (wall 14s)
+step 6600 / 11000 (epoch 12.00 / 20):
+  learning_rate = 1.14e-02, loss_average = 3.14e-01
+  validation accuracy: 92.64 (4632 / 5000), f1 (weighted): 92.62, loss: 3.10e-01
+  time: 22s (wall 15s)
+step 7200 / 11000 (epoch 13.09 / 20):
+  learning_rate = 1.03e-02, loss_average = 3.02e-01
+  validation accuracy: 92.68 (4634 / 5000), f1 (weighted): 92.66, loss: 3.09e-01
+  time: 24s (wall 16s)
+step 7800 / 11000 (epoch 14.18 / 20):
+  learning_rate = 9.75e-03, loss_average = 3.37e-01
+  validation accuracy: 92.58 (4629 / 5000), f1 (weighted): 92.57, loss: 3.10e-01
+  time: 25s (wall 17s)
+step 8400 / 11000 (epoch 15.27 / 20):
+  learning_rate = 9.27e-03, loss_average = 3.13e-01
+  validation accuracy: 92.44 (4622 / 5000), f1 (weighted): 92.42, loss: 3.10e-01
+  time: 27s (wall 18s)
+step 9000 / 11000 (epoch 16.36 / 20):
+  learning_rate = 8.80e-03, loss_average = 2.88e-01
+  validation accuracy: 92.60 (4630 / 5000), f1 (weighted): 92.58, loss: 3.10e-01
+  time: 29s (wall 20s)
+step 9600 / 11000 (epoch 17.45 / 20):
+  learning_rate = 8.36e-03, loss_average = 3.30e-01
+  validation accuracy: 92.62 (4631 / 5000), f1 (weighted): 92.61, loss: 3.08e-01
+  time: 31s (wall 21s)
+step 10200 / 11000 (epoch 18.55 / 20):
+  learning_rate = 7.94e-03, loss_average = 3.15e-01
+  validation accuracy: 92.50 (4625 / 5000), f1 (weighted): 92.48, loss: 3.09e-01
+  time: 33s (wall 22s)
+step 10800 / 11000 (epoch 19.64 / 20):
+  learning_rate = 7.55e-03, loss_average = 2.83e-01
+  validation accuracy: 92.64 (4632 / 5000), f1 (weighted): 92.62, loss: 3.09e-01
+  time: 35s (wall 24s)
+step 11000 / 11000 (epoch 20.00 / 20):
+  learning_rate = 7.55e-03, loss_average = 3.00e-01
+  validation accuracy: 92.74 (4637 / 5000), f1 (weighted): 92.72, loss: 3.08e-01
+  time: 36s (wall 24s)
+validation accuracy: peak = 92.74, mean = 92.60
+train accuracy: 92.47 (50860 / 55000), f1 (weighted): 92.46, loss: 3.14e-01
+test  accuracy: 92.32 (9232 / 10000), f1 (weighted): 92.30, loss: 3.14e-01
+2019-04-15 12:55:45.508091: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2019-04-15 12:55:45.508207: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-04-15 12:55:45.508235: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2019-04-15 12:55:45.508253: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2019-04-15 12:55:45.508526: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11275 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-12GB, pci bus id: 0000:83:00.0, compute capability: 6.0)
+Model softmax; Execution time: 37.69s
+
+
+NN architecture
+  input: M_0 = 960
+  layer 1: cgconv1
+    representation: M_0 * F_1 / p_1 = 960 * 10 / 1 = 9600
+    weights: F_0 * F_1 * K_1 = 1 * 10 * 960 = 9600
+    biases: F_1 = 10
+  layer 2: logits (softmax)
+    representation: M_2 = 10
+    weights: M_1 * M_2 = 9600 * 10 = 96000
+    biases: M_2 = 10
+step 600 / 11000 (epoch 1.09 / 20):
+  learning_rate = 1.90e-02, loss_average = 3.79e-01
+  validation accuracy: 90.30 (4515 / 5000), f1 (weighted): 90.28, loss: 3.44e-01
+  time: 3s (wall 3s)
+step 1200 / 11000 (epoch 2.18 / 20):
+  learning_rate = 1.80e-02, loss_average = 3.10e-01
+  validation accuracy: 91.38 (4569 / 5000), f1 (weighted): 91.32, loss: 3.00e-01
+  time: 6s (wall 5s)
+step 1800 / 11000 (epoch 3.27 / 20):
+  learning_rate = 1.71e-02, loss_average = 2.50e-01
+  validation accuracy: 92.62 (4631 / 5000), f1 (weighted): 92.60, loss: 2.58e-01
+  time: 8s (wall 7s)
+step 2400 / 11000 (epoch 4.36 / 20):
+  learning_rate = 1.63e-02, loss_average = 2.84e-01
+  validation accuracy: 93.54 (4677 / 5000), f1 (weighted): 93.53, loss: 2.32e-01
+  time: 11s (wall 9s)
+step 3000 / 11000 (epoch 5.45 / 20):
+  learning_rate = 1.55e-02, loss_average = 2.48e-01
+  validation accuracy: 94.00 (4700 / 5000), f1 (weighted): 93.99, loss: 2.13e-01
+  time: 13s (wall 11s)
+step 3600 / 11000 (epoch 6.55 / 20):
+  learning_rate = 1.47e-02, loss_average = 1.83e-01
+  validation accuracy: 94.48 (4724 / 5000), f1 (weighted): 94.47, loss: 1.99e-01
+  time: 16s (wall 13s)
+step 4200 / 11000 (epoch 7.64 / 20):
+  learning_rate = 1.40e-02, loss_average = 2.09e-01
+  validation accuracy: 94.62 (4731 / 5000), f1 (weighted): 94.62, loss: 1.84e-01
+  time: 19s (wall 15s)
+step 4800 / 11000 (epoch 8.73 / 20):
+  learning_rate = 1.33e-02, loss_average = 1.95e-01
+  validation accuracy: 95.32 (4766 / 5000), f1 (weighted): 95.32, loss: 1.74e-01
+  time: 21s (wall 18s)
+step 5400 / 11000 (epoch 9.82 / 20):
+  learning_rate = 1.26e-02, loss_average = 1.62e-01
+  validation accuracy: 95.32 (4766 / 5000), f1 (weighted): 95.32, loss: 1.67e-01
+  time: 24s (wall 20s)
+step 6000 / 11000 (epoch 10.91 / 20):
+  learning_rate = 1.20e-02, loss_average = 1.93e-01
+  validation accuracy: 95.62 (4781 / 5000), f1 (weighted): 95.62, loss: 1.61e-01
+  time: 27s (wall 22s)
+step 6600 / 11000 (epoch 12.00 / 20):
+  learning_rate = 1.14e-02, loss_average = 1.56e-01
+  validation accuracy: 95.58 (4779 / 5000), f1 (weighted): 95.58, loss: 1.53e-01
+  time: 29s (wall 24s)
+step 7200 / 11000 (epoch 13.09 / 20):
+  learning_rate = 1.03e-02, loss_average = 1.52e-01
+  validation accuracy: 95.76 (4788 / 5000), f1 (weighted): 95.75, loss: 1.49e-01
+  time: 32s (wall 26s)
+step 7800 / 11000 (epoch 14.18 / 20):
+  learning_rate = 9.75e-03, loss_average = 1.52e-01
+  validation accuracy: 95.92 (4796 / 5000), f1 (weighted): 95.92, loss: 1.44e-01
+  time: 34s (wall 29s)
+step 8400 / 11000 (epoch 15.27 / 20):
+  learning_rate = 9.27e-03, loss_average = 1.52e-01
+  validation accuracy: 96.30 (4815 / 5000), f1 (weighted): 96.30, loss: 1.39e-01
+  time: 37s (wall 31s)
+step 9000 / 11000 (epoch 16.36 / 20):
+  learning_rate = 8.80e-03, loss_average = 1.52e-01
+  validation accuracy: 96.24 (4812 / 5000), f1 (weighted): 96.23, loss: 1.36e-01
+  time: 40s (wall 33s)
+step 9600 / 11000 (epoch 17.45 / 20):
+  learning_rate = 8.36e-03, loss_average = 1.36e-01
+  validation accuracy: 96.34 (4817 / 5000), f1 (weighted): 96.33, loss: 1.33e-01
+  time: 42s (wall 35s)
+step 10200 / 11000 (epoch 18.55 / 20):
+  learning_rate = 7.94e-03, loss_average = 1.43e-01
+  validation accuracy: 96.40 (4820 / 5000), f1 (weighted): 96.40, loss: 1.30e-01
+  time: 45s (wall 37s)
+step 10800 / 11000 (epoch 19.64 / 20):
+  learning_rate = 7.55e-03, loss_average = 1.20e-01
+  validation accuracy: 96.30 (4815 / 5000), f1 (weighted): 96.30, loss: 1.28e-01
+  time: 47s (wall 39s)
+step 11000 / 11000 (epoch 20.00 / 20):
+  learning_rate = 7.55e-03, loss_average = 1.45e-01
+  validation accuracy: 96.44 (4822 / 5000), f1 (weighted): 96.43, loss: 1.27e-01
+  time: 48s (wall 40s)
+validation accuracy: peak = 96.44, mean = 96.09
+train accuracy: 96.19 (52906 / 55000), f1 (weighted): 96.19, loss: 1.33e-01
+test  accuracy: 96.24 (9624 / 10000), f1 (weighted): 96.24, loss: 1.33e-01
+2019-04-15 12:56:27.865010: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2019-04-15 12:56:27.865135: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-04-15 12:56:27.865164: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2019-04-15 12:56:27.865182: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2019-04-15 12:56:27.865506: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11275 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-12GB, pci bus id: 0000:83:00.0, compute capability: 6.0)
+Model fgconv_softmax; Execution time: 51.69s
+
+
+NN architecture
+  input: M_0 = 960
+  layer 1: cgconv1
+    representation: M_0 * F_1 / p_1 = 960 * 10 / 1 = 9600
+    weights: F_0 * F_1 * K_1 = 1 * 10 * 20 = 200
+    biases: F_1 = 10
+  layer 2: logits (softmax)
+    representation: M_2 = 10
+    weights: M_1 * M_2 = 9600 * 10 = 96000
+    biases: M_2 = 10
+step 600 / 11000 (epoch 1.09 / 20):
+  learning_rate = 1.90e-02, loss_average = 1.44e-01
+  validation accuracy: 96.50 (4825 / 5000), f1 (weighted): 96.50, loss: 1.31e-01
+  time: 4s (wall 3s)
+step 1200 / 11000 (epoch 2.18 / 20):
+  learning_rate = 1.80e-02, loss_average = 1.03e-01
+  validation accuracy: 97.18 (4859 / 5000), f1 (weighted): 97.18, loss: 9.46e-02
+  time: 7s (wall 5s)
+step 1800 / 11000 (epoch 3.27 / 20):
+  learning_rate = 1.71e-02, loss_average = 8.42e-02
+  validation accuracy: 97.72 (4886 / 5000), f1 (weighted): 97.72, loss: 7.61e-02
+  time: 9s (wall 8s)
+step 2400 / 11000 (epoch 4.36 / 20):
+  learning_rate = 1.63e-02, loss_average = 8.27e-02
+  validation accuracy: 97.26 (4863 / 5000), f1 (weighted): 97.26, loss: 8.42e-02
+  time: 12s (wall 10s)
+step 3000 / 11000 (epoch 5.45 / 20):
+  learning_rate = 1.55e-02, loss_average = 5.42e-02
+  validation accuracy: 97.84 (4892 / 5000), f1 (weighted): 97.84, loss: 6.68e-02
+  time: 15s (wall 13s)
+step 3600 / 11000 (epoch 6.55 / 20):
+  learning_rate = 1.47e-02, loss_average = 4.91e-02
+  validation accuracy: 98.04 (4902 / 5000), f1 (weighted): 98.04, loss: 6.53e-02
+  time: 18s (wall 15s)
+step 4200 / 11000 (epoch 7.64 / 20):
+  learning_rate = 1.40e-02, loss_average = 4.35e-02
+  validation accuracy: 98.08 (4904 / 5000), f1 (weighted): 98.08, loss: 6.28e-02
+  time: 21s (wall 17s)
+step 4800 / 11000 (epoch 8.73 / 20):
+  learning_rate = 1.33e-02, loss_average = 3.48e-02
+  validation accuracy: 98.30 (4915 / 5000), f1 (weighted): 98.30, loss: 5.85e-02
+  time: 24s (wall 20s)
+step 5400 / 11000 (epoch 9.82 / 20):
+  learning_rate = 1.26e-02, loss_average = 4.04e-02
+  validation accuracy: 98.18 (4909 / 5000), f1 (weighted): 98.18, loss: 6.07e-02
+  time: 27s (wall 22s)
+step 6000 / 11000 (epoch 10.91 / 20):
+  learning_rate = 1.20e-02, loss_average = 3.18e-02
+  validation accuracy: 98.24 (4912 / 5000), f1 (weighted): 98.24, loss: 5.98e-02
+  time: 30s (wall 25s)
+step 6600 / 11000 (epoch 12.00 / 20):
+  learning_rate = 1.14e-02, loss_average = 3.31e-02
+  validation accuracy: 98.34 (4917 / 5000), f1 (weighted): 98.34, loss: 5.37e-02
+  time: 33s (wall 27s)
+step 7200 / 11000 (epoch 13.09 / 20):
+  learning_rate = 1.03e-02, loss_average = 2.92e-02
+  validation accuracy: 98.28 (4914 / 5000), f1 (weighted): 98.28, loss: 5.60e-02
+  time: 36s (wall 29s)
+step 7800 / 11000 (epoch 14.18 / 20):
+  learning_rate = 9.75e-03, loss_average = 2.62e-02
+  validation accuracy: 98.46 (4923 / 5000), f1 (weighted): 98.46, loss: 5.40e-02
+  time: 39s (wall 32s)
+step 8400 / 11000 (epoch 15.27 / 20):
+  learning_rate = 9.27e-03, loss_average = 2.97e-02
+  validation accuracy: 98.42 (4921 / 5000), f1 (weighted): 98.42, loss: 5.23e-02
+  time: 42s (wall 34s)
+step 9000 / 11000 (epoch 16.36 / 20):
+  learning_rate = 8.80e-03, loss_average = 3.42e-02
+  validation accuracy: 98.44 (4922 / 5000), f1 (weighted): 98.44, loss: 5.31e-02
+  time: 45s (wall 37s)
+step 9600 / 11000 (epoch 17.45 / 20):
+  learning_rate = 8.36e-03, loss_average = 1.71e-02
+  validation accuracy: 98.38 (4919 / 5000), f1 (weighted): 98.38, loss: 5.48e-02
+  time: 48s (wall 39s)
+step 10200 / 11000 (epoch 18.55 / 20):
+  learning_rate = 7.94e-03, loss_average = 1.89e-02
+  validation accuracy: 98.36 (4918 / 5000), f1 (weighted): 98.36, loss: 5.59e-02
+  time: 51s (wall 42s)
+step 10800 / 11000 (epoch 19.64 / 20):
+  learning_rate = 7.55e-03, loss_average = 2.17e-02
+  validation accuracy: 98.36 (4918 / 5000), f1 (weighted): 98.36, loss: 5.63e-02
+  time: 54s (wall 44s)
+step 11000 / 11000 (epoch 20.00 / 20):
+  learning_rate = 7.55e-03, loss_average = 2.34e-02
+  validation accuracy: 98.48 (4924 / 5000), f1 (weighted): 98.48, loss: 5.29e-02
+  time: 55s (wall 45s)
+validation accuracy: peak = 98.48, mean = 98.38
+train accuracy: 99.57 (54765 / 55000), f1 (weighted): 99.57, loss: 1.79e-02
+test  accuracy: 98.35 (9835 / 10000), f1 (weighted): 98.35, loss: 5.93e-02
+2019-04-15 12:57:15.997299: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2019-04-15 12:57:15.997644: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-04-15 12:57:15.997679: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2019-04-15 12:57:15.997698: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2019-04-15 12:57:15.998026: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11275 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-12GB, pci bus id: 0000:83:00.0, compute capability: 6.0)
+Model cgconv_softmax; Execution time: 58.64s
+
+
+[(960, 960), (480, 480), (240, 240), (120, 120), (60, 60)]
+NN architecture
+  input: M_0 = 960
+  layer 1: cgconv1
+    representation: M_0 * F_1 / p_1 = 960 * 32 / 4 = 7680
+    weights: F_0 * F_1 * K_1 = 1 * 32 * 960 = 30720
+    biases: F_1 = 32
+  layer 2: cgconv2
+    representation: M_1 * F_2 / p_2 = 240 * 64 / 4 = 3840
+    weights: F_1 * F_2 * K_2 = 32 * 64 * 240 = 491520
+    biases: F_2 = 64
+  layer 3: fc1
+    representation: M_3 = 512
+    weights: M_2 * M_3 = 3840 * 512 = 1966080
+    biases: M_3 = 512
+  layer 4: logits (softmax)
+    representation: M_4 = 10
+    weights: M_3 * M_4 = 512 * 10 = 5120
+    biases: M_4 = 10
+step 600 / 11000 (epoch 1.09 / 20):
+  learning_rate = 1.90e-02, loss_average = 3.93e+00
+  validation accuracy: 86.14 (4307 / 5000), f1 (weighted): 85.98, loss: 3.85e+00
+  time: 5s (wall 8s)
+step 1200 / 11000 (epoch 2.18 / 20):
+  learning_rate = 1.80e-02, loss_average = 3.37e+00
+  validation accuracy: 91.46 (4573 / 5000), f1 (weighted): 91.41, loss: 3.35e+00
+  time: 9s (wall 12s)
+step 1800 / 11000 (epoch 3.27 / 20):
+  learning_rate = 1.71e-02, loss_average = 3.03e+00
+  validation accuracy: 93.02 (4651 / 5000), f1 (weighted): 93.01, loss: 3.00e+00
+  time: 12s (wall 16s)
+step 2400 / 11000 (epoch 4.36 / 20):
+  learning_rate = 1.63e-02, loss_average = 2.72e+00
+  validation accuracy: 94.40 (4720 / 5000), f1 (weighted): 94.40, loss: 2.70e+00
+  time: 16s (wall 21s)
+step 3000 / 11000 (epoch 5.45 / 20):
+  learning_rate = 1.55e-02, loss_average = 2.51e+00
+  validation accuracy: 94.74 (4737 / 5000), f1 (weighted): 94.73, loss: 2.45e+00
+  time: 19s (wall 25s)
+step 3600 / 11000 (epoch 6.55 / 20):
+  learning_rate = 1.47e-02, loss_average = 2.26e+00
+  validation accuracy: 95.08 (4754 / 5000), f1 (weighted): 95.06, loss: 2.25e+00
+  time: 22s (wall 29s)
+step 4200 / 11000 (epoch 7.64 / 20):
+  learning_rate = 1.40e-02, loss_average = 2.14e+00
+  validation accuracy: 95.64 (4782 / 5000), f1 (weighted): 95.65, loss: 2.07e+00
+  time: 26s (wall 34s)
+step 4800 / 11000 (epoch 8.73 / 20):
+  learning_rate = 1.33e-02, loss_average = 1.95e+00
+  validation accuracy: 95.76 (4788 / 5000), f1 (weighted): 95.76, loss: 1.91e+00
+  time: 29s (wall 38s)
+step 5400 / 11000 (epoch 9.82 / 20):
+  learning_rate = 1.26e-02, loss_average = 1.81e+00
+  validation accuracy: 96.12 (4806 / 5000), f1 (weighted): 96.12, loss: 1.78e+00
+  time: 33s (wall 43s)
+step 6000 / 11000 (epoch 10.91 / 20):
+  learning_rate = 1.20e-02, loss_average = 1.69e+00
+  validation accuracy: 96.38 (4819 / 5000), f1 (weighted): 96.38, loss: 1.66e+00
+  time: 36s (wall 47s)
+step 6600 / 11000 (epoch 12.00 / 20):
+  learning_rate = 1.14e-02, loss_average = 1.60e+00
+  validation accuracy: 96.32 (4816 / 5000), f1 (weighted): 96.32, loss: 1.56e+00
+  time: 40s (wall 52s)
+step 7200 / 11000 (epoch 13.09 / 20):
+  learning_rate = 1.03e-02, loss_average = 1.50e+00
+  validation accuracy: 96.44 (4822 / 5000), f1 (weighted): 96.44, loss: 1.47e+00
+  time: 43s (wall 56s)
+step 7800 / 11000 (epoch 14.18 / 20):
+  learning_rate = 9.75e-03, loss_average = 1.40e+00
+  validation accuracy: 96.50 (4825 / 5000), f1 (weighted): 96.50, loss: 1.39e+00
+  time: 46s (wall 61s)
+step 8400 / 11000 (epoch 15.27 / 20):
+  learning_rate = 9.27e-03, loss_average = 1.35e+00
+  validation accuracy: 97.00 (4850 / 5000), f1 (weighted): 97.00, loss: 1.32e+00
+  time: 50s (wall 65s)
+step 9000 / 11000 (epoch 16.36 / 20):
+  learning_rate = 8.80e-03, loss_average = 1.27e+00
+  validation accuracy: 96.74 (4837 / 5000), f1 (weighted): 96.74, loss: 1.25e+00
+  time: 53s (wall 70s)
+step 9600 / 11000 (epoch 17.45 / 20):
+  learning_rate = 8.36e-03, loss_average = 1.23e+00
+  validation accuracy: 96.98 (4849 / 5000), f1 (weighted): 96.98, loss: 1.20e+00
+  time: 57s (wall 75s)
+step 10200 / 11000 (epoch 18.55 / 20):
+  learning_rate = 7.94e-03, loss_average = 1.18e+00
+  validation accuracy: 96.80 (4840 / 5000), f1 (weighted): 96.80, loss: 1.15e+00
+  time: 60s (wall 79s)
+step 10800 / 11000 (epoch 19.64 / 20):
+  learning_rate = 7.55e-03, loss_average = 1.13e+00
+  validation accuracy: 96.88 (4844 / 5000), f1 (weighted): 96.88, loss: 1.10e+00
+  time: 63s (wall 84s)
+step 11000 / 11000 (epoch 20.00 / 20):
+  learning_rate = 7.55e-03, loss_average = 1.13e+00
+  validation accuracy: 96.96 (4848 / 5000), f1 (weighted): 96.96, loss: 1.08e+00
+  time: 65s (wall 85s)
+validation accuracy: peak = 97.00, mean = 96.70
+train accuracy: 96.86 (53272 / 55000), f1 (weighted): 96.85, loss: 1.09e+00
+test  accuracy: 96.71 (9671 / 10000), f1 (weighted): 96.71, loss: 1.09e+00
+2019-04-15 12:58:46.329482: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1511] Adding visible gpu devices: 0
+2019-04-15 12:58:46.329582: I tensorflow/core/common_runtime/gpu/gpu_device.cc:982] Device interconnect StreamExecutor with strength 1 edge matrix:
+2019-04-15 12:58:46.329640: I tensorflow/core/common_runtime/gpu/gpu_device.cc:988]      0 
+2019-04-15 12:58:46.329662: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1001] 0:   N 
+2019-04-15 12:58:46.329911: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1115] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 11275 MB memory) -> physical GPU (device: 0, name: Tesla P100-PCIE-12GB, pci bus id: 0000:83:00.0, compute capability: 6.0)
+Model fgconv_fgconv_fc_softmax; Execution time: 69.92s
+
+
+{'dir_name': 'mnist/cgconv_cgconv_fc_softmax', 'num_epochs': 20, 'batch_size': 100, 'decay_steps': 550.0, 'eval_frequency': 600, 'brelu': 'b1relu', 'pool': 'mpool1', 'regularization': 0.0005, 'dropout': 0.5, 'learning_rate': 0.02, 'decay_rate': 0.95, 'momentum': 0.9, 'F': [32, 64], 'K': [25, 25], 'p': [4, 4], 'M': [512, 10], 'filter': 'chebyshev5'}
+[(960, 960), (480, 480), (240, 240), (120, 120), (60, 60)]
+NN architecture
+  input: M_0 = 960
+  layer 1: cgconv1
+    representation: M_0 * F_1 / p_1 = 960 * 32 / 4 = 7680
+    weights: F_0 * F_1 * K_1 = 1 * 32 * 25 = 800
+    biases: F_1 = 32
+  layer 2: cgconv2
+    representation: M_1 * F_2 / p_2 = 240 * 64 / 4 = 3840
+    weights: F_1 * F_2 * K_2 = 32 * 64 * 25 = 51200
+    biases: F_2 = 64
+  layer 3: fc1
+    representation: M_3 = 512
+    weights: M_2 * M_3 = 3840 * 512 = 1966080
+    biases: M_3 = 512
+  layer 4: logits (softmax)
+    representation: M_4 = 10
+    weights: M_3 * M_4 = 512 * 10 = 5120
+    biases: M_4 = 10
+step 600 / 11000 (epoch 1.09 / 20):
+  learning_rate = 1.90e-02, loss_average = 3.58e+00
+  validation accuracy: 96.42 (4821 / 5000), f1 (weighted): 96.41, loss: 3.52e+00
+  time: 11s (wall 24s)
+step 1200 / 11000 (epoch 2.18 / 20):
+  learning_rate = 1.80e-02, loss_average = 3.16e+00
+  validation accuracy: 97.74 (4887 / 5000), f1 (weighted): 97.74, loss: 3.12e+00
+  time: 20s (wall 46s)
+step 1800 / 11000 (epoch 3.27 / 20):
+  learning_rate = 1.71e-02, loss_average = 2.83e+00
+  validation accuracy: 98.02 (4901 / 5000), f1 (weighted): 98.02, loss: 2.80e+00
+  time: 30s (wall 69s)
+step 2400 / 11000 (epoch 4.36 / 20):
+  learning_rate = 1.63e-02, loss_average = 2.56e+00
+  validation accuracy: 98.40 (4920 / 5000), f1 (weighted): 98.40, loss: 2.53e+00
+  time: 39s (wall 91s)
+step 3000 / 11000 (epoch 5.45 / 20):
+  learning_rate = 1.55e-02, loss_average = 2.32e+00
+  validation accuracy: 98.54 (4927 / 5000), f1 (weighted): 98.54, loss: 2.31e+00
+  time: 49s (wall 114s)
+step 3600 / 11000 (epoch 6.55 / 20):
+  learning_rate = 1.47e-02, loss_average = 2.13e+00
+  validation accuracy: 98.46 (4923 / 5000), f1 (weighted): 98.46, loss: 2.11e+00
+  time: 58s (wall 136s)
+step 4200 / 11000 (epoch 7.64 / 20):
+  learning_rate = 1.40e-02, loss_average = 1.95e+00
+  validation accuracy: 98.42 (4921 / 5000), f1 (weighted): 98.42, loss: 1.94e+00
+  time: 67s (wall 158s)
+step 4800 / 11000 (epoch 8.73 / 20):
+  learning_rate = 1.33e-02, loss_average = 1.79e+00
+  validation accuracy: 98.58 (4929 / 5000), f1 (weighted): 98.58, loss: 1.79e+00
+  time: 77s (wall 181s)
+step 5400 / 11000 (epoch 9.82 / 20):
+  learning_rate = 1.26e-02, loss_average = 1.68e+00
+  validation accuracy: 98.74 (4937 / 5000), f1 (weighted): 98.74, loss: 1.66e+00
+  time: 86s (wall 203s)
+step 6000 / 11000 (epoch 10.91 / 20):
+  learning_rate = 1.20e-02, loss_average = 1.55e+00
+  validation accuracy: 98.70 (4935 / 5000), f1 (weighted): 98.70, loss: 1.55e+00
+  time: 96s (wall 225s)
+step 6600 / 11000 (epoch 12.00 / 20):
+  learning_rate = 1.14e-02, loss_average = 1.45e+00
+  validation accuracy: 98.72 (4936 / 5000), f1 (weighted): 98.72, loss: 1.45e+00
+  time: 105s (wall 248s)
+step 7200 / 11000 (epoch 13.09 / 20):
+  learning_rate = 1.03e-02, loss_average = 1.35e+00
+  validation accuracy: 98.96 (4948 / 5000), f1 (weighted): 98.96, loss: 1.36e+00
+  time: 114s (wall 270s)
+step 7800 / 11000 (epoch 14.18 / 20):
+  learning_rate = 9.75e-03, loss_average = 1.28e+00
+  validation accuracy: 98.94 (4947 / 5000), f1 (weighted): 98.94, loss: 1.28e+00
+  time: 124s (wall 292s)
+step 8400 / 11000 (epoch 15.27 / 20):
+  learning_rate = 9.27e-03, loss_average = 1.20e+00
+  validation accuracy: 98.80 (4940 / 5000), f1 (weighted): 98.80, loss: 1.22e+00
+  time: 133s (wall 315s)
+step 9000 / 11000 (epoch 16.36 / 20):
+  learning_rate = 8.80e-03, loss_average = 1.15e+00
+  validation accuracy: 98.86 (4943 / 5000), f1 (weighted): 98.86, loss: 1.15e+00
+  time: 142s (wall 337s)
+step 9600 / 11000 (epoch 17.45 / 20):
+  learning_rate = 8.36e-03, loss_average = 1.08e+00
+  validation accuracy: 98.90 (4945 / 5000), f1 (weighted): 98.90, loss: 1.10e+00
+  time: 152s (wall 360s)
+step 10200 / 11000 (epoch 18.55 / 20):
+  learning_rate = 7.94e-03, loss_average = 1.03e+00
+  validation accuracy: 98.94 (4947 / 5000), f1 (weighted): 98.94, loss: 1.05e+00
+  time: 161s (wall 382s)
+step 10800 / 11000 (epoch 19.64 / 20):
+  learning_rate = 7.55e-03, loss_average = 9.94e-01
+  validation accuracy: 98.86 (4943 / 5000), f1 (weighted): 98.86, loss: 1.00e+00
+  time: 170s (wall 404s)
+step 11000 / 11000 (epoch 20.00 / 20):
+  learning_rate = 7.55e-03, loss_average = 9.82e-01
+  validation accuracy: 99.08 (4954 / 5000), f1 (weighted): 99.08, loss: 9.87e-01
+  time: 174s (wall 412s)
+validation accuracy: peak = 99.08, mean = 98.88
+train accuracy: 99.77 (54872 / 55000), f1 (weighted): 99.77, loss: 9.62e-01
+test  accuracy: 98.85 (9885 / 10000), f1 (weighted): 98.85, loss: 9.90e-01
+Model cgconv_cgconv_fc_softmax; Execution time: 190.49s
+
+
+  accuracy        F1             loss        time [ms]  name
+test  train   test  train   test     train
+98.85 99.77   98.85 99.77   9.90e-01 9.62e-01    38   cgconv_cgconv_fc_softmax
+98.35 99.57   98.35 99.57   5.93e-02 1.79e-02     4   cgconv_softmax
+96.71 96.86   96.71 96.85   1.09e+00 1.09e+00     8   fgconv_fgconv_fc_softmax
+96.24 96.19   96.24 96.19   1.33e-01 1.33e-01     4   fgconv_softmax
+92.32 92.47   92.30 92.46   3.14e-01 3.14e-01     2   softmax
+Traceback (most recent call last):
+  File "/var/spool/slurmd/job19590049/slurm_script", line 193, in <module>
+    model_perf.show()
+  File "/home/yuzhang/scratch/HCP/codes/HCP_fmripredict/cnn_graph/lib/utils.py", line 319, in show
+    fig, ax = plt.subplots(1, 2, figsize=(15, 5))
+  File "/home/yuzhang/tensorflow-py3.6/lib/python3.6/site-packages/matplotlib/pyplot.py", line 1176, in subplots
+    fig = figure(**fig_kw)
+  File "/home/yuzhang/tensorflow-py3.6/lib/python3.6/site-packages/matplotlib/pyplot.py", line 539, in figure
+    **kwargs)
+  File "/home/yuzhang/tensorflow-py3.6/lib/python3.6/site-packages/matplotlib/backend_bases.py", line 171, in new_figure_manager
+    return cls.new_figure_manager_given_figure(num, fig)
+  File "/home/yuzhang/tensorflow-py3.6/lib/python3.6/site-packages/matplotlib/backends/backend_tkagg.py", line 1049, in new_figure_manager_given_figure
+    window = Tk.Tk(className="matplotlib")
+  File "/cvmfs/soft.computecanada.ca/easybuild/software/2017/Core/python/3.6.3/lib/python3.6/tkinter/__init__.py", line 2017, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+_tkinter.TclError: couldn't connect to display "localhost:84.0"
